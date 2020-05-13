@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8bacd717-6d2a-4cbf-a4b1-fc6c3bcdb4ae" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="jsf" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1aDdfgJIOway4PoGsXNkbZLvJwS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/static/images" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="siit.model" />
+      <recent name="siit.web" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp\static\images" />
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\java\siit\db" />
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp\LicentaWeb" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp\static" />
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp\static\css" />
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\jurko\OneDrive\Desktop\java-web-v7\src\main\webapp" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="siit.Application" />
+      <module name="final-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="siit.exceptions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="final-project" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="siit.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8bacd717-6d2a-4cbf-a4b1-fc6c3bcdb4ae" name="Default Changelist" comment="" />
+      <created>1586274202188</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586274202188</updated>
+      <workItem from="1586284817255" duration="1202000" />
+      <workItem from="1586342401981" duration="1586000" />
+      <workItem from="1586348005532" duration="16611000" />
+      <workItem from="1586520940889" duration="25489000" />
+      <workItem from="1586704329366" duration="27980000" />
+      <workItem from="1586871059832" duration="149000" />
+      <workItem from="1586871492891" duration="971000" />
+      <workItem from="1586872876967" duration="2843000" />
+      <workItem from="1586887254581" duration="33048000" />
+      <workItem from="1587042804210" duration="4317000" />
+      <workItem from="1587130078340" duration="7219000" />
+      <workItem from="1587219927126" duration="4868000" />
+      <workItem from="1587309458214" duration="8148000" />
+      <workItem from="1587494664829" duration="3517000" />
+      <workItem from="1587572974592" duration="14176000" />
+      <workItem from="1587654426649" duration="202000" />
+      <workItem from="1587665907583" duration="15220000" />
+      <workItem from="1588343038508" duration="5460000" />
+      <workItem from="1588350504150" duration="22219000" />
+      <workItem from="1588413873464" duration="3218000" />
+      <workItem from="1588420090500" duration="8047000" />
+      <workItem from="1588429438386" duration="25857000" />
+      <workItem from="1588588115339" duration="3668000" />
+      <workItem from="1588671384642" duration="18171000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="196" key="#Template_Data_Languages" timestamp="1588447876194">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="196" key="#Template_Data_Languages/0.0.1366.728@0.0.1366.728" timestamp="1588447876194" />
+    <state x="137" y="17" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588590361602">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="17" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1588590361602" />
+    <state x="488" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1588444916559">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1588444916559" />
+    <state x="2319" y="158" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1586274351203">
+      <screen x="1920" y="0" width="1097" height="536" />
+    </state>
+    <state x="2319" y="158" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824/1920.0.1097.536@1920.0.1097.536" timestamp="1586274351203" />
+    <state x="466" y="257" width="433" height="222" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1588368705374">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="466" y="257" width="433" height="222" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1588368705374" />
+    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588415667637">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588415667637" />
+    <state x="463" y="117" key="FileChooserDialogImpl" timestamp="1588447031532">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="117" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588447031532" />
+    <state width="1322" height="217" key="GridCell.Tab.0.bottom" timestamp="1588692753560">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753560" />
+    <state width="1322" height="217" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1054" height="137" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1097.536@1920.0.1097.536" timestamp="1586281872997" />
+    <state width="1054" height="137" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586284994269" />
+    <state width="1322" height="217" key="GridCell.Tab.0.center" timestamp="1588692753559">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753559" />
+    <state width="1322" height="217" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1054" height="137" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1097.536@1920.0.1097.536" timestamp="1586281872996" />
+    <state width="1054" height="137" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586284994268" />
+    <state width="1322" height="217" key="GridCell.Tab.0.left" timestamp="1588692753559">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753559" />
+    <state width="1322" height="217" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1054" height="137" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1097.536@1920.0.1097.536" timestamp="1586281872996" />
+    <state width="1054" height="137" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586284994268" />
+    <state width="1322" height="217" key="GridCell.Tab.0.right" timestamp="1588692753560">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753560" />
+    <state width="1322" height="217" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1054" height="137" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1097.536@1920.0.1097.536" timestamp="1586281872996" />
+    <state width="1054" height="137" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586284994269" />
+    <state width="1322" height="217" key="GridCell.Tab.1.bottom" timestamp="1588692753561">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753561" />
+    <state width="1322" height="217" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1322" height="217" key="GridCell.Tab.1.center" timestamp="1588692753560">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753560" />
+    <state width="1322" height="217" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1322" height="217" key="GridCell.Tab.1.left" timestamp="1588692753560">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753560" />
+    <state width="1322" height="217" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state width="1322" height="217" key="GridCell.Tab.1.right" timestamp="1588692753560">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1365.728@0.0.1366.728" timestamp="1588692753560" />
+    <state width="1322" height="217" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1588691900620" />
+    <state x="65" y="23" key="new project wizard" timestamp="1588350079115">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="65" y="23" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1588350079115" />
+    <state x="389" y="120" key="refactoring.ChangeSignatureDialog" timestamp="1588421067346">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="389" y="120" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1588421067346" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588690517431">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588690517431" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/siit/service/BidService.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="bidVal" />
+        <watch expression="bidVal" />
+        <watch expression="bidVal" />
+        <watch expression="bidService" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="simpleUML.UMLToolWindowPlugin">
+    <General>
+      <option name="birdViewUpdateDelay" value="2000" />
+      <option name="defaultFileLocation" value="file://$PROJECT_DIR$/.." />
+    </General>
+    <Classdiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="defaultFieldsExpanded" value="false" />
+      <option name="defaultContructorsExpanded" value="false" />
+      <option name="defaultMethodsExpanded" value="false" />
+      <option name="showParameters" value="true" />
+      <option name="showTooltip" value="true" />
+      <option name="showReturnValues" value="true" />
+      <option name="longModifier" value="true" />
+      <option name="implementsBehaviour" value="1" />
+      <option name="extendsBehaviour" value="1" />
+      <option name="compartmentBehaviour" value="1" />
+      <option name="interfaceBackgroundColor" value="-6494306" />
+      <option name="abstractClassBackgroundColor" value="-1580132" />
+      <option name="classBackgroundColor" value="-6508057" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="quickSourceLinkColor" value="-16776961" />
+      <option name="quickDiagramLinkColor" value="-8454144" />
+      <option name="drawDecorations" value="false" />
+      <option name="hideFieldList" value="" />
+      <option name="showFieldList" value="" />
+      <option name="hideConstructorList" value="" />
+      <option name="showConstructorList" value="" />
+      <option name="hideMethodList" value="" />
+      <option name="showMethodList" value="" />
+      <option name="minimumFigureSize" value="0,0" />
+    </Classdiagram>
+    <Dependencydiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="0" />
+    </Dependencydiagram>
+    <Packagediagram>
+      <option name="diagramTitleFont" value="SansSerif,0,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="packageBackgroundColor" value="-4144960" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="2" />
+    </Packagediagram>
+  </component>
+</project>
