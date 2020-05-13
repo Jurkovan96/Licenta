@@ -125,7 +125,9 @@ public class BidService {
 //    }
 
 
+   public void CheckSmth(){
 
+   }
 
     @Transactional
     public void deleteBid(int bidId) {
