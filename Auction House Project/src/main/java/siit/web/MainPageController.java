@@ -65,40 +65,5 @@ public class MainPageController {
      return modelAndView;
 }
 
-
-
-
-//    @GetMapping("/{id}/products")
-//    public ModelAndView doDisplayProducts(@PathVariable int id) {
-//       ModelAndView mav = new ModelAndView();
-//       mav.setViewName("mainpage-products");
-//       mav.addObject("user", userService.getUserById(id));
-//       mav.addObject("products", productService.getProducts());
-//
-//       return mav;
-//    }
-
-
-
-
-//    @GetMapping("/{id}/products/{proid}&{name}/view")
-//    public ModelAndView doView(@PathVariable int id, @PathVariable int proid){
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("products-view");
-//        mav.addObject("user", userService.getUserById(id));
-//        mav.addObject("product", productService.getProductById(proid));
-//        return mav;}
-
-
-
-
-
-
-
-
-
-
-
-
-}
+  }
 

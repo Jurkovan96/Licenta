@@ -47,9 +47,10 @@ public class ProductController {
     @PostMapping("/{proid}&{name}/view")
     public ModelAndView doAddaProductBid(@PathVariable int id, @PathVariable int proid,
                                          @RequestParam int bidVal) throws Exception {
-
             Product product1 = productService.getProductById(proid);
-            try{bidService.addABid(product1, id, bidVal);}
+            try{bidService.addABid(product1, id, bidVal);
+            //bidService.setWinningBidsByDate(proid);
+                }
             catch (Exception e){
                 System.out.println("NO");
             }

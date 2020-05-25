@@ -28,7 +28,7 @@ public class AuthenticationController {
 			session.setAttribute("loggedUserId", userService.getUserByName(user).getId());
 			 mav.addObject("user", userService.getUserByName(user).getId());
              int id = userService.getUserByName(user).getId();
-		     mav.setViewName("redirect:/mainpage/" + id);
+             mav.setViewName("redirect:/mainpage/" + id);
 		} else {
 			mav.addObject("error", "User and password do not match!");
 			mav.setViewName("loginf");

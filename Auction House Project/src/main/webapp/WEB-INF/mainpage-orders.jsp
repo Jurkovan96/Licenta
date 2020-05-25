@@ -1,6 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,12 +7,6 @@
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
-
-
 </head>
 
 <body>
@@ -44,34 +36,32 @@
 </div>
 <div id="content_header"></div>
 <div id="site_content">
-
     <table class="table table-striped">
         <tr>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Artist</th>
-            <th>Year</th>
-            <th>Tehnique</th>
-            <th>Starting bid value</th>
+            <th>Order id</th>
+            <th>Order number</th>
+            <th>Total value</th>
             <th>Actions</th>
         </tr>
-        <c:forEach items="${products}" var="product">
+        <c:forEach items="${user.orders}" var="orders">
+
             <tr>
-                <td><c:out value="${product.name}" /></td>
-                <td><img src="<c:out value="${product.url}" />" width="200" height="150"></td>
-                <td><c:out value="${product.artist}" /></td>
-                <td><c:out value="${product.year}" /></td>
-                <td><c:out value="${product.value}" /></td>
-                <td><c:out value="${product.tehn}" /></td>
+
+                <td><c:out value="${orders.oder_id}" /></td>
+                <td><c:out value="${orders.number}" /></td>
+                <td><c:out value="${orders.value}" /></td>
                 <td>
-                    <<a href="<c:url value="products/${product.id}&${product.name}/view"/>" class="button">View product</a>
-                    <a href="<c:url value="/mainpage/${user.id}/about"/> " class="btn btn-info">Add bid</a>
+                    <a href="<c:url value="orders/${orders.oder_id}/details"/>" class="btn btn-warning">View</a>
+
+                </td>
                 </td>
             </tr>
         </c:forEach>
+
+
     </table>
 
-    </div>
+</div>
 </div>
 </body>
 </html>

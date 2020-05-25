@@ -11,8 +11,8 @@ import siit.model.Auction;
 import siit.model.Bid;
 import siit.model.Product;
 import siit.model.User;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,7 +49,7 @@ public class BidService {
        }
    }
 
-   public int setMaxCurrentMaxValue (int product_id){
+   private int setMaxCurrentMaxValue (int product_id){
     int valMax = 0;
        List<Bid> bids = bidDao.getBidsByProductId(product_id);
     for(Bid bid : bids){
@@ -61,15 +61,15 @@ public class BidService {
 
    }
 
-   public boolean checkTimeForBid(int product_id){
-       LocalDate date1 = LocalDate.now().plusDays(1);
+   private boolean checkTimeForBid(int product_id){
+       LocalDate date1 = LocalDate.now();
        Auction auction = auctionDao.getAuctionForProduct(product_id);
        if(date1.isBefore(auction.getStart_date()) || (date1.isAfter(auction.getEnd_date()))){
-   return false;}
+           return false;
+       }
    else return true;}
 
-
-   public boolean checkBidForDuplicates(int user_id, int product_id){
+   private boolean checkBidForDuplicates(int user_id, int product_id){
        int dupVal = 0;
        List<Bid> bids = getBidsWithProducts(user_id);
        for(Bid bid : bids){
@@ -80,18 +80,35 @@ public class BidService {
        else return false;
    }
 
-   public void setWinningBidsByDate(int product_id){
-       LocalDate date = LocalDate.now();
+   public void setWinningBidsByDate(int product_id, int user_id){
+       boolean ok = false;
        int maxVal = 0;
-       List<Bid> bids = bidDao.getBidsByProductId(product_id);
+       LocalDate date = LocalDate.now().plusDays(1);
+       Auction auction = auctionDao.getAuctionForProduct(product_id);
+       List<Bid> userBids = getBidsByUserId(user_id);
+       if(date.isAfter(auction.getEnd_date()) || date.isEqual(auction.getEnd_date())){
+           List<Bid> bids = bidDao.getBidsByProductId(product_id);
        for(Bid bid : bids){
            if(bid.getBid_value() > maxVal){
                maxVal = bid.getBid_value();
            }
        }
-       Bid winBid = bidDao.getBidByValue(maxVal);
-         bidDao.upDateBidState(winBid);
-   }
+           Bid winBid = bidDao.getBidByValue(maxVal);
+           bidDao.upDateBidState(winBid);
+
+       for(Bid usBid : userBids){
+           if(usBid.getBid_value() < maxVal && usBid.getProduct().getId() == winBid.getProduct().getId()) {
+           bidDao.upDateBidStateLost(usBid);
+           }
+       }
+//       if(ok == true){
+//           bidDao.upDateBidState(winBid);
+//       }
+       //else bidDao.upDateBidStateLost();
+       }
+
+
+       }
 
 
 
@@ -125,9 +142,7 @@ public class BidService {
 //    }
 
 
-   public void CheckSmth(){
 
-   }
 
     @Transactional
     public void deleteBid(int bidId) {
@@ -135,4 +150,10 @@ public class BidService {
     }
 
 
+    public void setBisState(int bid_id, int user_id) {
+     Bid bid = bidDao.getBidId(bid_id);
+       setWinningBidsByDate(bid.getProduct().getId(), user_id);
+
+
+    }
 }

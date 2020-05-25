@@ -11,6 +11,15 @@ public class User {
     private String phone_number;
     private List<Bid> bidsList;
     private Adress adress;
+    private List<Order> orders;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     public List<Bid> getBidsList() {
         return bidsList;

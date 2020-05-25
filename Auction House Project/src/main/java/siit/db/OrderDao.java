@@ -3,12 +3,14 @@ package siit.db;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import siit.model.Bid;
 import siit.model.Order;
 import siit.model.OrderProduct;
 import siit.model.Product;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -23,8 +25,7 @@ public class OrderDao {
 
     private Order mapOrder(ResultSet resultSet, int i) throws SQLException {
         Order order = new Order();
-        order.setNumber(resultSet.getInt("number"));
-        order.setDate(resultSet.getDate("date"));
+        order.setNumber(resultSet.getInt("ord_number"));
         order.setOder_id(resultSet.getInt("order_id"));
 
         return order;
@@ -41,20 +42,33 @@ public class OrderDao {
     }
 
     public List<OrderProduct> getOrderProductsForOrderById(int id){
-        return jdbcTemplate.query("select * from product_orders where ordersorder_id = ?",
+        return jdbcTemplate.query("select * from bids_orders where order_id = ?",
                 this::mapOrderProducts, id);
     }
 
     private OrderProduct mapOrderProducts(ResultSet resultSet, int i) throws SQLException{
        OrderProduct orderProduct = new OrderProduct();
-       Product product = new Product();
-       product.setId(resultSet.getInt("productproduct_id"));
-       orderProduct.setProduct(product);
-       orderProduct.setOrder_id(resultSet.getInt("ordersorder_id"));
+       orderProduct.setBid_ord_id(resultSet.getInt("bid_ord_id"));
+       orderProduct.setOrder_id(resultSet.getInt("order_id"));
+       Bid bid = new Bid();
+       bid.setBid_id(resultSet.getInt("id"));
+       orderProduct.setBid(bid);
        return orderProduct;
     }
 
 
+    public List<OrderProduct> getOrderProducts() {
+        return jdbcTemplate.query("select * from bids_orders",
+        this::mapOrderProducts);
+    }
 
+    public void addOrderProduct(OrderProduct orderProduct) {
+        jdbcTemplate.update("insert into bids_orders (id, order_id, price) values (?,?,?)",
+                orderProduct.getBid().getBid_id(), orderProduct.getOrder_id(), orderProduct.getBid().getBid_value());
+    }
 
+    public void addOrderForUser(Order order, int user_id) {
+        jdbcTemplate.update("insert into bids (user_id, ord_number, ord_value,)" +
+                        " values(?,?,?)", user_id, order.getNumber(),order.getValue());
+    }
 }

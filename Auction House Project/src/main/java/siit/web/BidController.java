@@ -1,10 +1,10 @@
 package siit.web;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import siit.model.Bid;
 import siit.model.Product;
 import siit.service.BidService;
 import siit.service.ProductService;
@@ -38,7 +38,11 @@ public class BidController {
         return "redirect:/mainpage/" + id + "/about";
     }
 
-
+    @GetMapping("/{bidId}/update")
+    public String updateWinBid(@PathVariable int id, @PathVariable int bidId) {
+        bidService.setBisState(bidId, id);
+        return "redirect:/mainpage/" + id + "/about";
+    }
 
 
 }

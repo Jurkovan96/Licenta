@@ -62,7 +62,17 @@ public class BidDao {
     }
 
     public void upDateBidState(Bid winbid) {
-        jdbcTemplate.update("update bids set bid_value = (?) where bid_id = ?",
+        jdbcTemplate.update("update bids set bid_state = (?) where id = ?",
                 "WON", winbid.getBid_id());
+    }
+
+    public Bid getBidId(int bidId) {
+        return jdbcTemplate.queryForObject("select * from bids where id = ?",
+                this::mapBid, bidId);
+    }
+
+    public void upDateBidStateLost(Bid winBid) {
+        jdbcTemplate.update("update bids set bid_state = (?) where id = ?",
+            "LOST", winBid.getBid_id());
     }
 }

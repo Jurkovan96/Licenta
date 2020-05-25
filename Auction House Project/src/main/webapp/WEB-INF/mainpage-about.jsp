@@ -34,6 +34,7 @@
                 <li><a href="/mainpage/${user.id}/about">About</a></li>
                 <li><a href="/mainpage/${user.id}/contact" >Contact</a></li>
                 <li><a href="/mainpage/${user.id}/settings" >Settings</a></li>
+                <li><a href="/mainpage/${user.id}/orders">Orderes</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
         </div>
@@ -64,7 +65,10 @@
                     <td>
 
                         <form id="formButtonsBids" role="form" method="post">
-                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/delete"/> " class="btn btn-info">Delete</a>
+                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/delete"/> "
+                               class="btn btn-info">Delete</a>
+                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/update"/> "
+                               class="btn btn-info">Update</a>
 
                         </form>
                     </td>

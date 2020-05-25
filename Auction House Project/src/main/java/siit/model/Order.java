@@ -1,6 +1,5 @@
 package siit.model;
 
-import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -8,7 +7,6 @@ public class Order {
    private int oder_id;
    private int number;
    private int value;
-   private Date date;
    List<OrderProduct> orderProductList;
 
     public List<OrderProduct> getOrderProductList() {
@@ -44,11 +42,4 @@ public class Order {
         this.value = value;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }
