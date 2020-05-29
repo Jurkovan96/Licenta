@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import siit.service.BidService;
 import siit.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,8 @@ public class AuthenticationController {
 
 	@Autowired
 	private UserService userService;
+
+
 
 	@GetMapping("/loginf")
 	public String displayLogin() {

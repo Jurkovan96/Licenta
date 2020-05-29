@@ -11,8 +11,9 @@
           rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-</head>
 
+
+</head>
 
 <body>
 <div id="main">
@@ -26,8 +27,7 @@
         </div>
         <div id="menubar">
             <ul id="menu">
-
-
+                <c:set value="${user}" var="user"/>
                 <li><a href="/mainpage/${user.id}">Home</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
                 <li><a href="/mainpage/${user.id}/about">About</a></li>
@@ -38,28 +38,42 @@
             </ul>
         </div>
     </div>
-    <div id="content_header"></div>
-    <div class="page-header">
 
-      <table class="table table-striped">
-    <tr>
-        <th>Order Number</th>
-        <th>Order id</th>
-        <th>Actions </th>
-    </tr>
-    <c:forEach items="${user.orders}" var="ord">
+</div>
+<div id="content_header"></div>
+<div id="site_content">
 
+    <table class="table table-striped">
         <tr>
-            <td><c:out value="${ord.number}" /></td>
-            <td><c:out value="${ord.oder_id}" /></td>
-            <td>
-
-<%--      <a href="<c:url value="/customers/${customer.id}/orders"/> " class="btn btn-info">View Orders</a>--%>
-            </td>
+            <th>Order id</th>
+            <th>Order product id</th>
+            <th>Inca ceva</th>
+            <th>Actions</th>
         </tr>
-    </c:forEach>
+
+        <c:forEach items="${order.orderProductList}" var="orderProducts">
+
+                <tr>
+                <td><c:out value="${orderProducts.order_id}" /></td>
+                <td><c:out value="${orderProducts.bid_ord_id}" /></td>
+                <td><c:out value="${orderProducts.bid.product}" /></td>
+
+
+                <td>
+                    <a href="<c:url value="orders/${order.oder_id}/details"/>" class="button">View details</a>
+                    <form id="formButtonsBids" role="form" method="post">
+                        <a href="<c:url value="/mainpage/${user.id}/orders/${order.oder_id}/delete"/> " class="btn btn-info">Delete</a>
+
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
+
+
+
     </table>
-   </div>
-   </div>
- </body>
+</div>
+</div>
+</div>
+</body>
 </html>

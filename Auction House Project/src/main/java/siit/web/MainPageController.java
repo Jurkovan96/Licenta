@@ -52,6 +52,7 @@ public class MainPageController {
     public ModelAndView editUserAccount(@PathVariable int id, @ModelAttribute User user){
         if(user.getId() == id) {
             userService.upDateUser(user);
+
             //adressService.updateAdress(user.getAdress());
             return new ModelAndView("redirect:/mainpage/{id}");
         }

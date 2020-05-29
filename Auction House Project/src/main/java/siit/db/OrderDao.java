@@ -71,4 +71,19 @@ public class OrderDao {
         jdbcTemplate.update("insert into bids (user_id, ord_number, ord_value,)" +
                         " values(?,?,?)", user_id, order.getNumber(),order.getValue());
     }
+
+    public void deleteOrderProduct(int ord_id){
+        jdbcTemplate.update("delete from bids_orders where order_id = ?", ord_id);
+    }
+
+    public void deleteOrderById(int ord_id) {
+        jdbcTemplate.update("delete from orders where order_id = ?", ord_id);
+
+
+    }
+
+    public Order getOrderById(int order_id) {
+    return jdbcTemplate.queryForObject("select * from orders where order_id = ?", this::mapOrder,
+            order_id);
+    }
 }

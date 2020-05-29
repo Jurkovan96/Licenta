@@ -41,6 +41,7 @@ public class BidController {
     @GetMapping("/{bidId}/update")
     public String updateWinBid(@PathVariable int id, @PathVariable int bidId) {
         bidService.setBisState(bidId, id);
+        
         return "redirect:/mainpage/" + id + "/about";
     }
 

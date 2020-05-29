@@ -7,6 +7,12 @@
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+
 </head>
 
 <body>
@@ -36,31 +42,30 @@
 </div>
 <div id="content_header"></div>
 <div id="site_content">
+
     <table class="table table-striped">
         <tr>
-            <th>Order id</th>
             <th>Order number</th>
-            <th>Total value</th>
+            <th>Order id</th>
+            <th>Order total value</th>
             <th>Actions</th>
         </tr>
-        <c:forEach items="${user.orders}" var="orders">
-
+        <c:forEach items="${user.orders}" var="order">
             <tr>
+                <td><c:out value="${order.oder_id}" /></td>
+                <td><c:out value="${order.number}" /></td>
+                <td><c:out value="${order.value}" /></td>
+                  <td>
+                    <a href="<c:url value="orders/${order.oder_id}/details"/>" class="button">View details</a>
+                      <form id="formButtonsBids" role="form" method="post">
+                          <a href="<c:url value="/mainpage/${user.id}/orders/${order.oder_id}/delete"/> " class="btn btn-info">Delete</a>
 
-                <td><c:out value="${orders.oder_id}" /></td>
-                <td><c:out value="${orders.number}" /></td>
-                <td><c:out value="${orders.value}" /></td>
-                <td>
-                    <a href="<c:url value="orders/${orders.oder_id}/details"/>" class="btn btn-warning">View</a>
-
-                </td>
+                      </form>
                 </td>
             </tr>
         </c:forEach>
-
-
     </table>
-
+</div>
 </div>
 </div>
 </body>

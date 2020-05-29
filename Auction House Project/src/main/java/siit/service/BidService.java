@@ -1,16 +1,16 @@
 package siit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import siit.db.AuctionDao;
 import siit.db.BidDao;
 import siit.db.ProductDao;
 import siit.db.UserDao;
-import siit.model.Auction;
-import siit.model.Bid;
-import siit.model.Product;
-import siit.model.User;
+import siit.model.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,8 @@ public class BidService {
    @Autowired
    private AuctionDao auctionDao;
 
+   @Autowired
+   private EmailConfig emailConfig;
 
    public User getUsersWithBidsById(int id){
        User user = userDao.getUserById(id);
@@ -99,6 +101,7 @@ public class BidService {
        for(Bid usBid : userBids){
            if(usBid.getBid_value() < maxVal && usBid.getProduct().getId() == winBid.getProduct().getId()) {
            bidDao.upDateBidStateLost(usBid);
+           doSentMail(user_id, usBid);
            }
        }
 //       if(ok == true){
@@ -108,6 +111,34 @@ public class BidService {
        }
 
 
+       }
+       public void doSentMail(int user_id, Bid bid){
+
+           final String sender = "VArt2020@gmail.com";
+
+           User user = userDao.getUserById(user_id);
+           user.setBidsList(getBidsWithProducts(user_id));
+
+
+           JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+           javaMailSender.setHost(emailConfig.getHost());
+           javaMailSender.setPort(emailConfig.getPort());
+           javaMailSender.setUsername(emailConfig.getUsername());
+           javaMailSender.setPassword(emailConfig.getPassword());
+
+           SimpleMailMessage mailMessage = new SimpleMailMessage();
+           mailMessage.setFrom(sender);
+           mailMessage.setTo(user.getEmail());
+           mailMessage.setSubject("Hello user " + user.getName());
+           mailMessage.setText("Congrats you have won the bid!" + bid.getProduct().getName() +
+                   bid.getBid_value());
+
+           javaMailSender.send(mailMessage);
+//           for(Bid userBids: user.getBids()){
+//               if(userBids.getState().equals("WON")){
+//                   javaMailSender.send(mailMessage);
+//               }
+        //   }
        }
 
 
@@ -124,7 +155,6 @@ public class BidService {
            Auction auction = auctionDao.getAuctionForProduct(product.getId());
            product.setAuction(auction);
            bidd.setProduct(product);
-
        }
        return bids;
     }

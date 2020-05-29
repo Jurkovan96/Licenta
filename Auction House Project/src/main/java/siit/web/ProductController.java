@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import siit.model.Bid;
 import siit.model.Product;
 import siit.service.BidService;
 import siit.service.ProductService;
@@ -42,6 +41,7 @@ public class ProductController {
         mav.addObject("bids", bidService.getBidsByUserId(id));
         mav.addObject("product", productService.getProductById(proid));
 
+
         return mav;}
 
     @PostMapping("/{proid}&{name}/view")
@@ -49,18 +49,11 @@ public class ProductController {
                                          @RequestParam int bidVal) throws Exception {
             Product product1 = productService.getProductById(proid);
             try{bidService.addABid(product1, id, bidVal);
-            //bidService.setWinningBidsByDate(proid);
-                }
+            }
             catch (Exception e){
                 System.out.println("NO");
             }
             return new ModelAndView("redirect:/mainpage/" + id + "/products");
 
-        }
-
-
-
-
-
-
+    }
 }

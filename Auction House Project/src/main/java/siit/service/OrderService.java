@@ -2,15 +2,16 @@ package siit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import siit.db.BidDao;
 import siit.db.OrderDao;
+import siit.db.ProductDao;
 import siit.db.UserDao;
-import siit.model.Bid;
-import siit.model.Order;
-import siit.model.OrderProduct;
-import siit.model.User;
+import siit.model.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -24,17 +25,45 @@ public class OrderService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private UserService userService;
 
+    @Autowired
+    private ProductDao productDao;
 
     public User getOrderProductsWithBidsByUser(int user_id){
         User user = userDao.getUserById(user_id);
-        user.setOrders(orderDao.getOrdersByUserId(user_id));
+        List<Order> orders = orderDao.getOrdersByUserId(user_id);
+        Map<Integer, Bid> bidMap = new HashMap<>();
+        for(Order o: orders){
+           populateOrderProducts(o, bidMap);}
+        user.setOrders(orders);
         return user;
     }
 
     public void addOrderForUser(int user_id, Order order){
        orderDao.addOrderForUser(order, user_id);
     }
+
+
+    public Order getOrderById(int order_id) {
+        Order order = orderDao.getOrderById(order_id);
+        populateOrderProducts(order, new HashMap<>());
+        return order;
+    }
+
+
+    private void populateOrderProducts(Order order, Map<Integer, Bid> bidMap) {
+        order.setOrderProductList(
+                orderDao.getOrderProductsForOrderById(order.getOder_id()));
+        for (OrderProduct orderProduct : order.getOrderProductList()) {
+            Bid bid = bidMap.computeIfAbsent(
+                    orderProduct.getBid().getBid_id(), bidDao::getBidId);
+            //bid.setProduct(productDao.getProductForBid(bid.getBid_id()));
+            orderProduct.setBid(bid);
+        }
+    }
+
 
     public OrderProduct addBidToOrderProduct(OrderProduct orderProduct){
     OrderProduct existingOP = getOrderProductByBidId(orderProduct.getBid().getBid_id(), orderProduct.getOrder_id());
@@ -66,5 +95,11 @@ public class OrderService {
     public List<OrderProduct> getOrderProductForOrder(int id) {
        return orderDao.getOrderProductsForOrderById(id);
 
+    }
+
+    @Transactional
+    public void deleteOrder(int ord_id) {
+        orderDao.deleteOrderProduct(ord_id);
+        orderDao.deleteOrderById(ord_id);
     }
 }
