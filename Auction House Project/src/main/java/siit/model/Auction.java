@@ -10,7 +10,6 @@ public class Auction {
     private LocalDate end_date;
     private int max_val;
 
-
     public int getAuction_id() {
         return auction_id;
     }

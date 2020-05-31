@@ -27,12 +27,12 @@
             <ul id="menu">
 
 
-                <li><a href="/mainpage/${user.id}">Home</a></li>
+                <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
-                <li><a href="/mainpage/${user.id}/about">About</a></li>
-                <li><a href="/mainpage/${user.id}/contact" >Contact</a></li>
-                <li><a href="/mainpage/${user.id}/settings" >Settings</a></li>
-                <li><a href="/mainpage/${user.id}/orders">Orderes</a></li>
+                <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
+                <li><a href="/mainpage/${user.id}/contact" >Your auctions</a></li>
+                <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
+                <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
         </div>

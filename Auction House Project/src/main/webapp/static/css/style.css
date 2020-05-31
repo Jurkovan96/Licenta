@@ -25,13 +25,13 @@ h1, h2, h3, h4, h5, h6
 
 h2
 { font: normal 175% 'century gothic', arial, sans-serif;
-  color: #1293EE;}
+  color: #A4AA04;}
 
 h4, h5, h6
 { margin: 0;
   padding: 0 0 5px 0;
   font: normal 120% arial, sans-serif;
-  color: #1293EE;}
+  color: #A4AA04;}
 
 h5, h6
 { font: italic 95% arial, sans-serif;
@@ -44,7 +44,7 @@ h6
 a, a:hover
 { outline: none;
   text-decoration: underline;
-  color: #F05A00;}
+  color: #1293EE;}
 
 a:hover
 { text-decoration: none;}
@@ -89,15 +89,14 @@ ol li
   margin-right: auto;}
 
 #header
-{ background: #F79F00;
+{ background: #025587;
   height: 240px;}
 
 #logo
 { width: 825px;
   position: relative;
   height: 168px;
-  background: #F79F00 url(/static/images/logo.png) no-repeat;
-  border-left:none}
+  background: #025587 url(/static/images/logo.png) no-repeat;}
 
 #logo #logo_text 
 { position: absolute; 
@@ -117,25 +116,21 @@ ol li
   text-decoration: none;}
 
 #logo_text h1 a .logo_colour
-{ color: #F05A00;}
-
-a.bn {
-  margin-left: 242px;
-}
+{ color: #80FFFF;}
 
 #logo_text h2
 { font-size: 100%;
   padding: 4px 0 0 0;
-  color: #FFF;}
+  color: #DDD;}
 
 #menubar
 { width: 877px;
   height: 72px;
   padding: 0;
-  background: #5B2660 url(/static/images/menu.png) repeat-x;}
+  background: #29415D url(/static/images/menu.png) repeat-x;}
 
 ul#menu, ul#menu li
-{
+{ float: left;
   margin: 0; 
   padding: 0;}
 
@@ -145,20 +140,19 @@ ul#menu li
 ul#menu li a
 { letter-spacing: 0.1em;
   font: normal 100% 'lucida sans unicode', arial, sans-serif;
+  display: block; 
+  float: left; 
   height: 37px;
-  display: block;
-  float: left;
   padding: 29px 26px 6px 26px;
   text-align: center;
-  color: #fff;
+  color: #FFF;
   text-transform: uppercase;
   text-decoration: none;
-  background: transparent;}
-
+  background: transparent;} 
 
 ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
-{ color: #FFFFFF;
-  background: #3F1B41 url(/static/images/menu_select.png) repeat-x;}
+{ color: #FFF;
+  background: #1C2C3E url(/static/images/menu_select.png) repeat-x;}
 
 #site_content
 { width: 837px;
@@ -231,11 +225,6 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   padding: 4px; 
   font: 100% arial, sans-serif;}
 
-#colours
-{ height: 0px;
-  text-align: right;
-  padding: 66px 16px 0px 300px;}
-  
 .form_settings
 { margin: 15px 0 0 0;}
 
@@ -263,7 +252,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   height: 33px;
   padding: 2px 0 3px 0;
   cursor: pointer; 
-  background: #F05A00; 
+  background: #263C56; 
   color: #FFF;}
 
 .form_settings textarea, .form_settings select
@@ -286,38 +275,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   border-top: 1px solid #D9D5CF;
   border-bottom: 1px solid #FFF;
   margin: 0 0 20px 0;}
-
-a.bn{
-  color: #F79F00;
-
-}
-
-.product{
-  height: 350px;
-  width: 250px;
-  margin-left: 400px;
-  border-style: solid;
-  border-color: #F79F00;
-
-}
-
-.details{
-  border-top: #F79F00;
-  border-style: solid;
-  height: 200px;
-  width: auto;
-  box-sizing: border-box;
-  border-color: #F79F00;
-}
-
-.button1{
-  height: 20px;
-  width: 65px;
-  text-align: center;
-  margin-left: 90px;
-  margin-top: 40px;
-}
-
+  
 table
 { margin: 10px 0 30px 0;}
 
@@ -331,9 +289,3 @@ table tr td
 { background: #F0EFE2;
   color: #47433F;
   border-top: 1px solid #FFF;}
-
-.imagesForProducts{
-  width: 10px;
-  height: 15px;
-  margin-left: 100px;
-}

@@ -60,9 +60,9 @@ public class UserDao {
 
 
 
-    public void addNewUser(String name, String passw, String em, int id, String ph){
-        jdbcTemplate.update("insert into user(user_id, name, password, email, phone_number) values(?, ?, ?, ?, ?)",
-                id, name, passw, em, ph);
+    public void addNewUser(String name, String passw, String em, String ph){
+        jdbcTemplate.update("insert into user(name, password, email, phone_number) values(?, ?, ?, ?)",
+                name, passw, em, ph);
     }
 
 

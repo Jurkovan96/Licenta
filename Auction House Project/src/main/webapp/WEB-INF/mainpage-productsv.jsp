@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -13,7 +14,7 @@
           rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-
+    <script type="text/javascript" src="/static/js/custom.js"></script>
 
 </head>
 
@@ -30,12 +31,12 @@
         <div id="menubar">
             <ul id="menu">
                 <c:set value="${user}" var="user"/>
-                <li><a href="/mainpage/${user.id}">Home</a></li>
+                <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
-                <li><a href="/mainpage/${user.id}/about">About</a></li>
-                <li><a href="/mainpage/${user.id}/contact" >Contact</a></li>
-                <li><a href="/mainpage/${user.id}/settings" >Settings</a></li>
-                <li><a href="/mainpage/${user.id}/orders">Orderes</a></li>
+                <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
+                <li><a href="/mainpage/${user.id}/contact" >Your auctions</a></li>
+                <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
+                <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
         </div>
@@ -44,6 +45,17 @@
 </div>
 <div id="content_header"></div>
 <div id="site_content">
+
+
+<%--    <form action="${}" method="get">--%>
+<%--    <input id="txtSrc" type="text" name="keyword">--%>
+<%--        <button type="submit" >Go</button>--%>
+<%--    </form>--%>
+<%--    <select name="productss id="selectProd">--%>
+<%--    <c:forEach items="${products}" var="product1">--%>
+<%--    <option value="${product1.name}">${product1.name}</option>--%>
+<%--    </c:forEach>--%>
+<%--        </select>--%>
 
     <table class="table table-striped">
         <tr>

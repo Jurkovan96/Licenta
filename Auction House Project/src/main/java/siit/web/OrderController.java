@@ -49,16 +49,14 @@ public class OrderController {
     }
 
 
-
-//    @PostMapping
-//    public ModelAndView doOrders(@PathVariable int id, @RequestParam int ord_num,
-//                                 ){
-//        ModelAndView modelAndView = new ModelAndView();
-//        Order order = orderService.getOrderByUserId(id);
-//        orderService.addOrderForUser(id, order);
-//
-//        modelAndView.setViewName("redirect:/");
-//        return modelAndView;
-//    }
+    @PostMapping("add")
+    public ModelAndView doOrders(@PathVariable int id, @RequestParam int ord_num){
+        ModelAndView modelAndView = new ModelAndView();
+        Order order = new Order();
+        order.setNumber(ord_num);
+        orderService.addOrderForUser(id, order);
+        modelAndView.setViewName("redirect:/mainpage/" + id);
+        return modelAndView;
+    }
 
 }

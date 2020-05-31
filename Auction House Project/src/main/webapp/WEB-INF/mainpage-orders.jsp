@@ -28,12 +28,12 @@
         <div id="menubar">
             <ul id="menu">
                 <c:set value="${user}" var="user"/>
-                <li><a href="/mainpage/${user.id}">Home</a></li>
+                <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
-                <li><a href="/mainpage/${user.id}/about">About</a></li>
-                <li><a href="/mainpage/${user.id}/contact" >Contact</a></li>
-                <li><a href="/mainpage/${user.id}/settings" >Settings</a></li>
-                <li><a href="/mainpage/${user.id}/orders">Orderes</a></li>
+                <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
+                <li><a href="/mainpage/${user.id}/contact" >Your auctions</a></li>
+                <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
+                <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
         </div>
@@ -65,6 +65,11 @@
             </tr>
         </c:forEach>
     </table>
+
+    <form role="form" method="post" action="/mainpage/${user.id}/orders/add">
+        <input type="text" name="ord_num" id="ord_num">
+        <button name="opAdd" type="submit">Add new order</button>
+    </form>
 </div>
 </div>
 </div>

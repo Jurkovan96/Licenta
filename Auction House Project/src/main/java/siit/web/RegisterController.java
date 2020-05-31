@@ -32,17 +32,13 @@ public class RegisterController {
                                         @RequestParam String newemail){
 
         ModelAndView mav = new ModelAndView();
-       // userService.addNewUserService(newuser, newpassword, newemail, idGenetare());
+       userService.addNewUserService(newuser, newpassword, newemail, "121");
         session.setAttribute("logged", newuser);
         int id = userService.getUserByName(newuser).getId();
         mav.setViewName("redirect:/mainpage/" + id);
 
         return mav;}
 
-        public Integer idGenetare(){
-            Random random = new Random();
-             Integer id_rand = random.nextInt(1000);
-             return id_rand;
-        }
+
 
 }

@@ -24,8 +24,6 @@ public class AdressDao {
         return jdbcTemplate.query("select * from adress", this::mapAdress);
     }
 
-
-
     private Adress mapAdress(ResultSet resultSet, int rn) throws SQLException {
         Adress adress =  new Adress();
         adress.setAdress_id(resultSet.getInt("adress_id"));

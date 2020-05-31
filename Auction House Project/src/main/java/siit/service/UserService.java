@@ -69,9 +69,9 @@ public class UserService {
       }
 
 
-     public void addNewUserService(String name, String passw, String em, int id, String ph){
+     public void addNewUserService(String name, String passw, String em, String ph){
         if(!checkUser(name, passw)){
-        userDao.addNewUser(name, passw, em, id, ph);}
+        userDao.addNewUser(name, passw, em, ph);}
         else
             throw new ValidationException("existing.user");
     }

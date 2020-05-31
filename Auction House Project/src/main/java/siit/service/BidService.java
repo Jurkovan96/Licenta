@@ -51,7 +51,7 @@ public class BidService {
        }
    }
 
-   private int setMaxCurrentMaxValue (int product_id){
+   public int setMaxCurrentMaxValue (int product_id){
     int valMax = 0;
        List<Bid> bids = bidDao.getBidsByProductId(product_id);
     for(Bid bid : bids){
@@ -141,10 +141,7 @@ public class BidService {
         //   }
        }
 
-
-
-
-    public List<Bid> getBidsByUserId(int id){
+       public List<Bid> getBidsByUserId(int id){
        return bidDao.getBidsForUser(id);
     }
 
@@ -159,17 +156,16 @@ public class BidService {
        return bids;
     }
 
-//    public List<Bid> getBidsWithProductsByProductIds(int user_id){
-//        List<Bid> bids = getBidsByUserId(user_id);
-//        for(Bid bidd: bids){
-//            Product product = productDao.getProductForBid(bidd.getProduct().getId());
-//            Auction auction = auctionDao.getAuctionForProduct(product.getId());
-//            product.setAuction(auction);
-//            bidd.setProduct(product);
-//
-//        }
-//        return bids;
-//    }
+
+
+    public Bid getBidWithProductById(int bid_id){
+       Bid bid = bidDao.getBidId(bid_id);
+       Product product = productDao.getProductForBid(bid.getProduct().getId());
+       Auction auction = auctionDao.getAuctionForProduct(product.getId());
+       product.setAuction(auction);
+       bid.setProduct(product);
+       return bid;
+   }
 
 
 

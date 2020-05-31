@@ -27,12 +27,12 @@
             <ul id="menu">
 
 
-                <li><a href="/mainpage/${user.id}">Home</a></li>
+                <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
-                <li><a href="/mainpage/${user.id}/about">About</a></li>
-                <li><a href="/mainpage/${user.id}/contact" >Contact</a></li>
-                <li><a href="/mainpage/${user.id}/settings" >Settings</a></li>
-                <li><a href="/mainpage/${user.id}/orders">Orderes</a></li>
+                <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
+                <li><a href="/mainpage/${user.id}/contact" >Your auctions</a></li>
+                <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
+                <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
         </div>
@@ -41,6 +41,8 @@
     <div id="site_content">
         <c:set value="${product}" var="prod"/>
         <c:set value="${bids}" var="bid"/>
+<c:set value="${max_value}" var="maxV"/>
+
 <form role="form" method="post">
 
 
@@ -48,7 +50,8 @@
     <label id="prod_name" > ${prod.name}</label>
     <label id="description" >${prod.artist}</label>
 </div>
-    <label for="prod_value" id="prod_value" >The bid value must be greater that ${prod.value}</label>
+<%--    <c:if test="${maxV=0}"><label for="prod_value" id="prod_value" >The bid value must be greater that ${prod.value}</label></c:if>--%>
+    <label for="prod_value" id="prod_value" >The bid value must be greater that ${maxV}</label>
     <input type="text" id="bidVal" name="bidVal" placeholder="Bid value">
 <button> Make a bid </button>
 

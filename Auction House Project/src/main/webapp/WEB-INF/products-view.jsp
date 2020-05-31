@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,18 +24,20 @@
             <ul id="menu">
 
                 <c:set value="${user}" var="user"/>
-                <li><a href="/mainpage/${user.id}">Home</a></li>
+                <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
-                <li><a href="/mainpage/${user.id}/about">About</a></li>
-                <li><a href="/mainpage/${user.id}/contact" >Contact</a></li>
-                <li><a href="/mainpage/${user.id}/settings" >Settings</a></li>
-                <li><a href="/mainpage/${user.id}/orders">Orderes</a></li>
+                <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
+                <li><a href="/mainpage/${user.id}/contact" >Your auctions</a></li>
+                <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
+                <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
         </div>
     </div>
 
     <div id="site_content">
+
+
         <table class="table table-striped">
             <tr>
                 <th>Product</th>

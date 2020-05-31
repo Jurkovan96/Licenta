@@ -31,13 +31,21 @@ public class OrderService {
     @Autowired
     private ProductDao productDao;
 
+    @Autowired
+    private BidService bidService;
+
+
+
     public User getOrderProductsWithBidsByUser(int user_id){
+
         User user = userDao.getUserById(user_id);
-        List<Order> orders = orderDao.getOrdersByUserId(user_id);
-        Map<Integer, Bid> bidMap = new HashMap<>();
-        for(Order o: orders){
-           populateOrderProducts(o, bidMap);}
+        List<Order> orders = getOrdersWithOrderProducts(user_id);
+//        Map<Integer, Bid> bidMap = new HashMap<>();
+//        for(Order o: orders){
+//           populateOrderProducts(o, bidMap);}
         user.setOrders(orders);
+
+
         return user;
     }
 
@@ -53,15 +61,32 @@ public class OrderService {
     }
 
 
+
+
     private void populateOrderProducts(Order order, Map<Integer, Bid> bidMap) {
         order.setOrderProductList(
                 orderDao.getOrderProductsForOrderById(order.getOder_id()));
         for (OrderProduct orderProduct : order.getOrderProductList()) {
-            Bid bid = bidMap.computeIfAbsent(
-                    orderProduct.getBid().getBid_id(), bidDao::getBidId);
-            //bid.setProduct(productDao.getProductForBid(bid.getBid_id()));
-            orderProduct.setBid(bid);
+            Bid bid = bidService.getBidWithProductById(orderProduct.getBid().getBid_id());
+                  bidMap.putIfAbsent(orderProduct.getBid().getBid_id(), bid);
+                 orderProduct.setBid(bid);
+//           Bid bid = bidMap.computeIfAbsent(
+//                    orderProduct.getBid().getBid_id(), bidDao::getBidId);
+//
+//           orderProduct.setBid(bid);
         }
+    }
+
+
+    private List<Order> getOrdersWithOrderProducts(int user_id){
+        List<Order> orders = orderDao.getOrdersByUserId(user_id);
+        for(Order o: orders){
+            o.setOrderProductList(orderDao.getOrderProductsForOrderById(o.getOder_id()));
+            for(OrderProduct op: o.getOrderProductList()){
+                op.setBid(bidService.getBidWithProductById(op.getBid().getBid_id()));
+            }
+        }
+        return orders;
     }
 
 

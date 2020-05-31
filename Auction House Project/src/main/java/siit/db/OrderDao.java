@@ -68,8 +68,7 @@ public class OrderDao {
     }
 
     public void addOrderForUser(Order order, int user_id) {
-        jdbcTemplate.update("insert into bids (user_id, ord_number, ord_value,)" +
-                        " values(?,?,?)", user_id, order.getNumber(),order.getValue());
+        jdbcTemplate.update("insert into orders (user_id, ord_number, ord_value) values(?,?,?)", user_id, order.getNumber(),order.getValue());
     }
 
     public void deleteOrderProduct(int ord_id){

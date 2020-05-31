@@ -30,6 +30,8 @@ public class ProductController {
         mav.addObject("user", userService.getUserById(id));
         mav.addObject("products", productService.getProducts());
 
+
+
         return mav;
     }
 
@@ -39,7 +41,9 @@ public class ProductController {
         mav.setViewName("view-product");
         mav.addObject("user", bidService.getUsersWithBidsById(id));
         mav.addObject("bids", bidService.getBidsByUserId(id));
+        mav.addObject("max_value", bidService.setMaxCurrentMaxValue(proid));
         mav.addObject("product", productService.getProductById(proid));
+
 
 
         return mav;}
