@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import siit.model.CryptoByte;
 import siit.model.User;
 import siit.service.*;
 
@@ -26,8 +27,12 @@ public class MainPageController {
    @Autowired
    public AdressService adressService;
 
+   @Autowired
+   public CryptoByte cryptoByte;
+
    @GetMapping("/{id}")
     public ModelAndView doMain(@PathVariable int id){
+
         ModelAndView mav = new ModelAndView("mainpage");
         mav.addObject("user", userService.getUserById(id));
         return mav;

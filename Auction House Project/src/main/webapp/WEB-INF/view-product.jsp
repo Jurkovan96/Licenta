@@ -7,14 +7,28 @@
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+<%--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
+<%--          rel="stylesheet"--%>
+<%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"--%>
+<%--          crossorigin="anonymous">--%>
 </head>
 
 <body>
 <div id="main">
+    <div id="loggedUser">
+        <div id="textBox">
+            <h4 id="userText">Hello,  <c:out value="${user.name}"  /> !</h4>
+
+            <a href="#">
+
+                <div id="imgDiv">
+                    <img id="imgSettings" src="/static/images/settingscolor.png" alt="Not found!" width="25px">
+                    <p id="userSettings"><a href="/mainpage/${user.id}">Carte pagina principala</a></p>
+                </div>
+            </a>
+
+        </div>
+    </div>
     <div id="header">
         <div id="logo">
             <div id="logo_text">

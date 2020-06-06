@@ -6,8 +6,10 @@ import siit.exceptions.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import siit.db.UserDao;
+import siit.model.CryptoByte;
 import siit.model.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @Service
@@ -21,6 +23,9 @@ public class UserService {
 
     @Autowired
     private AdressDao adressDao;
+
+    @Autowired
+    private CryptoByte cryptoByte;
 
     public List<User> getUsers(){
         return userDao.getUsers();
@@ -49,7 +54,7 @@ public class UserService {
         return user;
     }
 
-  public void upDateUser(User user){
+    public void upDateUser(User user){
         userDao.updateUser(user);
   }
 
@@ -57,10 +62,12 @@ public class UserService {
 
 
     public boolean checkUser(String name, String password){
+        String pass = cryptoByte.encrypt(password.getBytes());
         if( name.equals(userDao.getUserByName(name).getName()) &&
-                password.equals(userDao.getUserByPassword(password).getPassword()))
+                pass.equals(userDao.getUserByPassword(pass).getPassword()))
             return true;
         else return false;}
+
 
       public User getUserWithAdress(int id){
         User user = userDao.getUserById(id);
@@ -70,12 +77,18 @@ public class UserService {
 
 
      public void addNewUserService(String name, String passw, String em, String ph){
-        if(!checkUser(name, passw)){
-        userDao.addNewUser(name, passw, em, ph);}
-        else
-            throw new ValidationException("existing.user");
+        userDao.addNewUser(name, passw, em, ph);
     }
 
+
+    public boolean checkUserByEmail(String em) {
+//        User user = userDao.getUserByEmail(em);
+//        if(user == null){
+//            return false;
+//        }
+//        else
+            return true;
+    }
 
 
 }

@@ -61,7 +61,7 @@ public class UserDao {
 
 
     public void addNewUser(String name, String passw, String em, String ph){
-        jdbcTemplate.update("insert into user(name, password, email, phone_number) values(?, ?, ?, ?)",
+        jdbcTemplate.update("insert into users (name, password, email, phone_number) values(?, ?, ?, ?)",
                 name, passw, em, ph);
     }
 

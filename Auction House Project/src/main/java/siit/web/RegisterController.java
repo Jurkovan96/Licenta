@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import siit.exceptions.ValidationException;
+import siit.model.CryptoByte;
 import siit.model.User;
 import siit.service.UserService;
 
@@ -21,6 +23,9 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CryptoByte cryptoByte;
+
     @GetMapping("/login-register")
     public String doReg(){
         return "/login-register";
@@ -32,10 +37,15 @@ public class RegisterController {
                                         @RequestParam String newemail){
 
         ModelAndView mav = new ModelAndView();
-       userService.addNewUserService(newuser, newpassword, newemail, "121");
+        if(userService.checkUserByEmail(newemail)){
+        userService.addNewUserService(newuser, cryptoByte.encrypt(newpassword.getBytes()), newemail, "121");
         session.setAttribute("logged", newuser);
         int id = userService.getUserByName(newuser).getId();
-        mav.setViewName("redirect:/mainpage/" + id);
+        mav.setViewName("redirect:/mainpage/" + id);}
+
+        else {
+            mav.setViewName("redirect:/loginf");
+        }
 
         return mav;}
 

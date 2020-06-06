@@ -10,27 +10,43 @@
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+<%--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
+<%--          rel="stylesheet"--%>
+<%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"--%>
+<%--          crossorigin="anonymous">--%>
     <script type="text/javascript" src="/static/js/custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/util.css">
+<%--    <link rel="stylesheet" type="text/css" href="/static/css/main.css">--%>
 
 </head>
-
+<c:set value="${user}" var="user"/>
 <body>
 <div id="main">
+    <div id="loggedUser">
+        <div id="textBox">
+            <h4 id="userText">Hello,  <c:out value="${user.name}"  /> !</h4>
+
+            <a href="#">
+
+            <div id="imgDiv">
+            <img id="imgSettings" src="/static/images/settingscolor.png" alt="Not found!" width="25px">
+                <p id="userSettings"><a href="/mainpage/${user.id}">Carte pagina principala</a></p>
+        </div>
+        </a>
+
+        </div>
+    </div>
     <div id="header">
         <div id="logo">
+
             <div id="logo_text">
-                <!-- class="logo_colour", allows you to change the colour of the text -->
                 <h1><a href="index.html">colour<span class="logo_colour">orange</span></a></h1>
                 <h2>Simple. Contemporary. Website Template.</h2>
             </div>
         </div>
         <div id="menubar">
             <ul id="menu">
-                <c:set value="${user}" var="user"/>
+
                 <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
                 <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
@@ -38,6 +54,7 @@
                 <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
                 <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
+
             </ul>
         </div>
     </div>
@@ -47,17 +64,17 @@
 <div id="site_content">
 
 
-<%--    <form action="${}" method="get">--%>
-<%--    <input id="txtSrc" type="text" name="keyword">--%>
-<%--        <button type="submit" >Go</button>--%>
-<%--    </form>--%>
-<%--    <select name="productss id="selectProd">--%>
-<%--    <c:forEach items="${products}" var="product1">--%>
-<%--    <option value="${product1.name}">${product1.name}</option>--%>
-<%--    </c:forEach>--%>
-<%--        </select>--%>
+    <form role="form" method="get">
+    <input id="txtSrc" type="text" name="keyword">
+        <button type="submit" >Go</button>
+    </form>
+    <select name="productss id="selectProd">
+    <c:forEach items="${products}" var="product1">
+    <option value="${product1.name}">${product1.name}</option>
+    </c:forEach>
+        </select>
 
-    <table class="table table-striped">
+    <table class="">
         <tr>
             <th>Name</th>
             <th>Image</th>

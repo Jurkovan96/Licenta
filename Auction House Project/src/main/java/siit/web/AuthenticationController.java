@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import siit.model.CryptoByte;
+import siit.model.User;
 import siit.service.BidService;
 import siit.service.UserService;
 
@@ -15,7 +17,8 @@ public class AuthenticationController {
 	@Autowired
 	private UserService userService;
 
-
+    @Autowired
+	private CryptoByte cryptoByte;
 
 	@GetMapping("/loginf")
 	public String displayLogin() {
@@ -26,14 +29,16 @@ public class AuthenticationController {
 	public ModelAndView doLogin(HttpSession session, @RequestParam String user, @RequestParam String password) {
 
 		ModelAndView mav = new ModelAndView();
-
 		if(userService.checkUser(user, password) == true){
 			session.setAttribute("loggedUserId", userService.getUserByName(user).getId());
 			 mav.addObject("user", userService.getUserByName(user).getId());
              int id = userService.getUserByName(user).getId();
-             mav.setViewName("redirect:/mainpage/" + id);
+             String stringId = String.valueOf(id);
+             String cryptoId = cryptoByte.encrypt(stringId.getBytes());
+
+             mav.setViewName("redirect:/mainpage/" + cryptoId);
 		} else {
-			mav.addObject("error", "User and password do not match!");
+			mav.addObject("error", "Incorect user or password bitch!");
 			mav.setViewName("loginf");
 		}
 

@@ -138,7 +138,8 @@ ul#menu li
 { list-style: none;}
 
 ul#menu li a
-{ letter-spacing: 0.1em;
+{
+  /*letter-spacing: 0.1em;*/
   font: normal 100% 'lucida sans unicode', arial, sans-serif;
   display: block; 
   float: left; 
@@ -153,6 +154,15 @@ ul#menu li a
 ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
 { color: #FFF;
   background: #1C2C3E url(/static/images/menu_select.png) repeat-x;}
+
+ul#menu li a:hover{
+  background: #d3d3d3 !important;
+  color: black;
+}
+
+#adressEdit{
+  display: none;
+}
 
 #site_content
 { width: 837px;
@@ -289,3 +299,44 @@ table tr td
 { background: #F0EFE2;
   color: #47433F;
   border-top: 1px solid #FFF;}
+
+#loggedUser{
+  background: rgba(1, 33, 45, 1);
+  height: 35px;
+}
+#textBox {
+  padding: 0.5%;
+}
+
+#userText{
+   padding: 3px;
+   display: inline;
+    width: 100px;
+  vertical-align: middle;
+}
+
+#imgDiv{
+  position: relative;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+#imgSettings{
+
+  vertical-align: middle;
+
+}
+
+#userSettings {
+  display: none;
+  position: absolute;
+  min-width: 150px;
+  background-color: rgba(98,98,98, 0.5) ;
+  padding: 12px 16px;
+  z-index: 999999;
+}
+
+#imgDiv:hover #userSettings{
+  display: block;
+
+}

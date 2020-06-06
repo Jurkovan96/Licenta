@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: jurko
-  Date: 4/10/2020
-  Time: 8:07 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,10 +11,23 @@
 
 <body>
 <div id="main">
+    <div id="loggedUser">
+            <div id="textBox">
+                <h4 id="userText">Hello,  <c:out value="${user.name}"  /> !</h4>
+
+                <a href="#">
+
+                    <div id="imgDiv">
+                        <img id="imgSettings" src="/static/images/settingscolor.png" alt="Not found!" width="25px">
+                        <p id="userSettings"><a href="/mainpage/${user.id}">Carte pagina principala</a></p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
     <div id="header">
         <div id="logo">
             <div id="logo_text">
-                <!-- class="logo_colour", allows you to change the colour of the text -->
                 <h1><a href="index.html">colour<span class="logo_colour">orange</span></a></h1>
                 <h2>Simple. Contemporary. Website Template.</h2>
             </div>
