@@ -61,7 +61,11 @@
     <div id="site_content">
 
         <h2>Edit user data</h2>
-        <!-- insert your sidebar items here -->
+
+        <c:if test="${not empty error}">
+            <div class="alert alert-danger">Error: ${error}</div>
+        </c:if>
+
         <form class="form-horizontal" role="form" method="post">
 
             <label class="control-label col-sm-2" for="name">Name:</label>
@@ -73,15 +77,15 @@
                 <input type="text" class="form-control" id="email" name="email" value="${user.email}">
             </div>
 
-            <label class="control-label col-sm-2" for="phone">Phone number:</label>
+            <label class="control-label col-sm-2" for="phone_number">Phone number:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="phone" name="phone" value="${user.phone_number}">
+                <input type="text" class="form-control" id="phone_number" name="phone_number" value="${user.phone_number}">
             </div>
             <br>
 
 
             <button type="button" name="showAdressDetails"
-                    id="showDetails" style="background: black"> Show Adress Details
+                    id="showDetails" > Show Adress Details
             </button>
 
 

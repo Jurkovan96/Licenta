@@ -1,55 +1,62 @@
 package siit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import siit.exceptions.ValidationException;
 import siit.model.CryptoByte;
 import siit.model.User;
-import siit.service.BidService;
 import siit.service.UserService;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
+import java.util.Locale;
 
 @Controller
+@RequestMapping("/loginf")
 public class AuthenticationController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
-	private CryptoByte cryptoByte;
+    private CryptoByte cryptoByte;
 
-	@GetMapping("/loginf")
-	public String displayLogin() {
-		return "loginf";
-	}
+    @Autowired
+    private ApplicationContext applicationContext;
 
-	@PostMapping("/loginf")
-	public ModelAndView doLogin(HttpSession session, @RequestParam String user, @RequestParam String password) {
+    @GetMapping
+    public ModelAndView displayLogin() {
+        ModelAndView mav = new ModelAndView("loginf");
+        return mav;
+    }
 
-		ModelAndView mav = new ModelAndView();
-		if(userService.checkUser(user, password) == true){
-			session.setAttribute("loggedUserId", userService.getUserByName(user).getId());
-			 mav.addObject("user", userService.getUserByName(user).getId());
-             int id = userService.getUserByName(user).getId();
-             String stringId = String.valueOf(id);
-             String cryptoId = cryptoByte.encrypt(stringId.getBytes());
+    @PostMapping
+    public ModelAndView doLogin(HttpSession session, @RequestParam String user, @RequestParam String password) {
+        ModelAndView mav = new ModelAndView();
 
-             mav.setViewName("redirect:/mainpage/" + cryptoId);
-		} else {
-			mav.addObject("error", "Incorect user or password bitch!");
-			mav.setViewName("loginf");
-		}
+        try {
+            if(userService.checkUserObj(user, password) == true) {
+                session.setAttribute("loggedUserId", userService.getUserByName(user).getId());
+                mav.addObject("user", userService.getUserByName(user).getId());
+                int id = userService.getUserByName(user).getId();
+                mav.setViewName("redirect:/mainpage/" + id);
+            }
+        } catch (ValidationException e) {
+           // mav.setViewName("redirect:/VartLogin");
+            mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
+        }
 
-		return mav;
-	}
+        return mav;
+    }
 
-	@GetMapping("/logout")
-	public String doLogout(HttpSession session) {
-		session.invalidate();
-		return "redirect;/loginf";
-	}
+    @GetMapping("/logout")
+    public String doLogout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/loginf";
+    }
 
 
 }

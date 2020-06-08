@@ -1,6 +1,7 @@
 package siit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,8 @@ public class BidController {
         ModelAndView mav = new ModelAndView("mainpage-about");
         mav.addObject("user", userService.getUserById(id));
         mav.addObject("bids", bidService.getBidsWithProducts(id));
+       // mav.addObject("timer", bidService.getCounter(id));
+
         return mav;
     }
 
@@ -40,8 +43,8 @@ public class BidController {
 
     @GetMapping("/{bidId}/update")
     public String updateWinBid(@PathVariable int id, @PathVariable int bidId) {
-        bidService.setBisState(bidId, id);
-        
+        bidService.calculateByDate(bidId, id);
+        //bidService.setBisState(bidId, id);
         return "redirect:/mainpage/" + id + "/about";
     }
 

@@ -1,4 +1,3 @@
-
 var customerId = $.url('#customerId');
 var orderId = $.url('#orderId');
 

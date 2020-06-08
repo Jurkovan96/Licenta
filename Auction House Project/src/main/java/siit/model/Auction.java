@@ -9,6 +9,15 @@ public class Auction {
     private LocalDate start_date;
     private LocalDate end_date;
     private int max_val;
+    private long time;
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
 
     public int getAuction_id() {
         return auction_id;

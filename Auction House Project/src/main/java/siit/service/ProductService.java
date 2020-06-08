@@ -2,9 +2,12 @@ package siit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import siit.db.AuctionDao;
 import siit.db.ProductDao;
 import siit.model.Product;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -13,20 +16,29 @@ public class ProductService {
     @Autowired
     private ProductDao productDao;
 
-    public List<Product> getProducts(){
+    @Autowired
+    private AuctionDao auctionDao;
+
+
+
+
+
+
+    public List<Product> getProducts() {
         return productDao.getProducts();
     }
 
-    public List<Product> getProductsByYear(int year){
+    public List<Product> getProductsByYear(int year) {
         return productDao.getProductsByYears(year);
     }
 
-    public Product getProductById(int id){
+    public Product getProductById(int id) {
         Product product = productDao.getProductById(id);
-       return product;}
+        return product;
+    }
 
 
-    public Product getProductByBidId(int bid_id){
+    public Product getProductByBidId(int bid_id) {
         return productDao.getProductForBid(bid_id);
     }
 
@@ -37,4 +49,34 @@ public class ProductService {
     public List<Product> getProductsByTehniq(String tehniq) {
         return productDao.getProductsByTehnique(tehniq);
     }
+
+    public List<Product> getProductsWithTime() {
+        List<Product> products = getProducts();
+        for (Product p : products) {
+            p.setAuction(auctionDao.getAuctionForProduct(p.getId()));
+            calculateTime(p);
+        }
+        return products;
+    }
+
+    public void calculateTime(Product product) {
+        long timeB = ChronoUnit.DAYS.between(LocalDate.now(), product.getAuction().getEnd_date());
+        product.getAuction().setTime(timeB);
+    }
+//     public void calculateTimeInTimeStamp(Product product) {
+//        LocalDate localDate = product.getAuctions2().getEnd_date().toLocalDateTime().toLocalDate();
+//        LocalDate today = LocalDate.now();
+//        long timeB = localDate.compareTo(today);
+//        product.getAuctions2().setTime(timeB);
+//
+//     }
+
+
+
+    public void calculateRemainingTime(){
+
+
+    }
+
+
 }

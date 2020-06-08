@@ -16,6 +16,9 @@ public class Product {
     private int value;
     private Auction auction;
 
+
+
+
     public Auction getAuction() {
         return auction;
     }

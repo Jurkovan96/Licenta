@@ -1,6 +1,7 @@
 package siit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,13 @@ import siit.model.User;
 import siit.service.UserService;
 
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
+import java.util.Locale;
 import java.util.Random;
 
 @Controller
+@RequestMapping("/login-register")
 public class RegisterController {
 
     @Autowired
@@ -26,28 +30,38 @@ public class RegisterController {
     @Autowired
     CryptoByte cryptoByte;
 
-    @GetMapping("/login-register")
-    public String doReg(){
-        return "/login-register";
+    @Autowired
+    ApplicationContext applicationContext;
+
+    @GetMapping
+    public ModelAndView doDisplayRegister() {
+        ModelAndView mav = new ModelAndView("login-register");
+        return mav;
     }
 
 
-    @PostMapping("/login-register")
+    @PostMapping
     public ModelAndView displayRegister(HttpSession session, @RequestParam String newuser, @RequestParam String newpassword,
-                                        @RequestParam String newemail){
+                                        @RequestParam String newemail) {
 
         ModelAndView mav = new ModelAndView();
-        if(userService.checkUserByEmail(newemail)){
-        userService.addNewUserService(newuser, cryptoByte.encrypt(newpassword.getBytes()), newemail, "121");
-        session.setAttribute("logged", newuser);
-        int id = userService.getUserByName(newuser).getId();
-        mav.setViewName("redirect:/mainpage/" + id);}
-
-        else {
-            mav.setViewName("redirect:/loginf");
+        try{
+        if (userService.checkExistingEmailForRegister(newemail) == true && userService.checkExistingUserName(newuser) == true) {
+            userService.addNewUserService(newuser, cryptoByte.encrypt(newpassword.getBytes()), newemail, "12345");
+            session.setAttribute("logged", newuser);
+            int id = userService.getUserByName(newuser).getId();
+            userService.addAdressDefault(id);
+            mav.setViewName("redirect:/mainpage/" + id);
+        }
+        }  catch (ValidationException e){
+            mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
+            //mav.setViewName("redirect:/VartLogin");
         }
 
-        return mav;}
+        return mav;
+    }
+
+
 
 
 

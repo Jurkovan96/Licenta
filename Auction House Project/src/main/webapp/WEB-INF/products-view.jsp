@@ -14,9 +14,7 @@
 <div id="main">
     <div id="loggedUser">
         <div id="textBox">
-            <h4 id="userText">Hello,  <c:out value="${user.name}"  /> !</h4>
-
-
+            <h4 id="userText">Hello, <c:out value="${user.name}"  /> !</h4>
             <a href="#">
 
                 <div id="imgDiv">

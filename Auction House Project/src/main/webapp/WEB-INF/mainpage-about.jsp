@@ -68,6 +68,7 @@
                     <td><c:out value="${bidd.end_date}" /></td>
                     <td><c:out value="${bidd.state}" /></td>
                     <td><c:out value="${product.name}" /></td>
+                    <td><c:out value="${product.auction.time}" /></td>
                     <td>
 
                         <form id="formButtonsBids" role="form" method="post">

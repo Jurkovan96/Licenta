@@ -1,18 +1,22 @@
 package siit.service;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import siit.db.AuctionDao;
 import siit.db.BidDao;
 import siit.db.ProductDao;
 import siit.db.UserDao;
+import siit.exceptions.ValidationException;
 import siit.model.*;
 
+
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -33,20 +37,23 @@ public class BidService {
     @Autowired
     private EmailConfig emailConfig;
 
+    @Autowired
+    private ProductService productService;
+
     public User getUsersWithBidsById(int id) {
         User user = userDao.getUserById(id);
         user.setBidsList(getBidsWithProducts(id));
         return user;
     }
 
-    public void addABid(Product product, int user_id, int val) throws Exception {
+    public void addABid(Product product, int user_id, int val) throws ValidationException {
         Auction auction = auctionDao.getAuctionForProduct(product.getId());
         if (checkBidForDuplicates(user_id, product.getId()) && val > setMaxCurrentMaxValue(product.getId())
                 && (checkTimeForBid(product.getId()) == true)) {
 
             bidDao.addANewBid(product, user_id, val);
         } else {
-            throw new Exception("No way");
+            throw new ValidationException("auction.error");
         }
     }
 
@@ -101,7 +108,7 @@ public class BidService {
             for (Bid usBid : userBids) {
                 if (usBid.getBid_value() < maxVal && usBid.getProduct().getId() == winBid.getProduct().getId()) {
                     bidDao.upDateBidStateLost(usBid);
-                    doSentMail(user_id, usBid);
+                    doSentMail(user_id, usBid.getBid_id());
                 }
             }
 //       if(ok == true){
@@ -113,13 +120,16 @@ public class BidService {
 
     }
 
-    public void doSentMail(int user_id, Bid bid) {
+
+    public void doSentMail(int user_id, int bid_id) {
 
         final String sender = "VArt2020@gmail.com";
 
         User user = userDao.getUserById(user_id);
         user.setBidsList(getBidsWithProducts(user_id));
 
+        Bid bid = getBidWithProductById(bid_id);
+        LocalDate mailDate = LocalDate.now();
 
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setHost(emailConfig.getHost());
@@ -130,9 +140,10 @@ public class BidService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(sender);
         mailMessage.setTo(user.getEmail());
-        mailMessage.setSubject("Hello user " + user.getName());
+        mailMessage.setSubject("Hello " + user.getName());
         mailMessage.setText("Congrats you have won the bid!" + bid.getProduct().getName() +
-                bid.getBid_value());
+                bid.getBid_value() +
+                "Check the site Vart to claim your prize in the Owned Products section");
 
         javaMailSender.send(mailMessage);
 //           for(Bid userBids: user.getBids()){
@@ -151,6 +162,7 @@ public class BidService {
         for (Bid bidd : bids) {
             Product product = productDao.getProductForBid(bidd.getProduct().getId());
             Auction auction = auctionDao.getAuctionForProduct(product.getId());
+            auction.setTime(ChronoUnit.DAYS.between(LocalDate.now(), auction.getEnd_date()));
             product.setAuction(auction);
             bidd.setProduct(product);
         }
@@ -163,6 +175,7 @@ public class BidService {
         Product product = productDao.getProductForBid(bid.getProduct().getId());
         Auction auction = auctionDao.getAuctionForProduct(product.getId());
         product.setAuction(auction);
+        productService.calculateTime(product);
         bid.setProduct(product);
         return bid;
     }
@@ -174,10 +187,22 @@ public class BidService {
     }
 
 
+    public void calculateByDate(int bid_id, int user_id) {
+        LocalDate localDate = LocalDate.now();
+        Bid bid = getBidWithProductById(bid_id);
+        if (bid.getProduct().getAuction().getTime() == 0) {
+            setWinningBidsByDate(bid.getProduct().getId(), user_id);
+        }
+
+    }
+
+
     public void setBisState(int bid_id, int user_id) {
         Bid bid = bidDao.getBidId(bid_id);
         setWinningBidsByDate(bid.getProduct().getId(), user_id);
+    }
 
+    public void getCounter(int user_id) {
 
     }
 }
