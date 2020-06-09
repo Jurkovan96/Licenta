@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import siit.exceptions.ValidationException;
 import java.util.Locale;
+
+import siit.model.CryptoByte;
 import siit.service.*;
 
 @Controller
@@ -25,6 +27,9 @@ public class DataController {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private CryptoByte cryptoByte;
+
     @GetMapping
     public ModelAndView doReserPasswordView() {
         ModelAndView mav = new ModelAndView("password-reset");
@@ -35,11 +40,11 @@ public class DataController {
     @PostMapping
     public ModelAndView doResetPassword(@RequestParam String email) {
         ModelAndView mav = new ModelAndView();
-        String password = "password";
+        String password = "password".concat(cryptoByte.encrypt(email.getBytes()));
         try {
             if (userService.checkExistingEmailForPasswordChange(email) == true)
                 userService.resetPassword(email, password);
-                doSentEmails.getMailReady(email);
+                doSentEmails.getMailReady(email, password);
             mav.setViewName("redirect:/loginf");
 
         } catch (ValidationException e) {

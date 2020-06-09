@@ -19,11 +19,6 @@ public class ProductService {
     @Autowired
     private AuctionDao auctionDao;
 
-
-
-
-
-
     public List<Product> getProducts() {
         return productDao.getProducts();
     }
@@ -63,20 +58,5 @@ public class ProductService {
         long timeB = ChronoUnit.DAYS.between(LocalDate.now(), product.getAuction().getEnd_date());
         product.getAuction().setTime(timeB);
     }
-//     public void calculateTimeInTimeStamp(Product product) {
-//        LocalDate localDate = product.getAuctions2().getEnd_date().toLocalDateTime().toLocalDate();
-//        LocalDate today = LocalDate.now();
-//        long timeB = localDate.compareTo(today);
-//        product.getAuctions2().setTime(timeB);
-//
-//     }
-
-
-
-    public void calculateRemainingTime(){
-
-
-    }
-
 
 }

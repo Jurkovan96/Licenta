@@ -35,9 +35,5 @@ public class AdressDao {
     }
 
 
-    public void updateAdress(Adress adress){
-        jdbcTemplate.update("update adress set street = (?), number = (?), city = (?), country = (?) where user_id = ?", adress.getStreet(),
-                adress.getNumber(), adress.getCity(), adress.getCountry(), adress.getAdress_id());
-    }
 
 }

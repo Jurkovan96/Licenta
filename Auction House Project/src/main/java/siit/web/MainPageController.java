@@ -76,8 +76,8 @@ public class MainPageController {
     @GetMapping("/{id}/settings/edit-adress")
     public ModelAndView doViewEditUserAdress(@PathVariable int id) {
         ModelAndView mav = new ModelAndView("edit-adress");
-        mav.addObject("user", userService.getUserById(id));
-        mav.addObject("adress", userService.getUserWithAdress(id));
+        mav.addObject("user", userService.getUserWithAdress(id));
+       // mav.addObject("adress", userService.getUserWithAdress(id));
         return mav;
     }
 
@@ -87,7 +87,7 @@ public class MainPageController {
             userService.updateAdress(id, adress);
 
         } catch (ValidationException e) {
-            ModelAndView mav = new ModelAndView("mainpage-settings");
+            ModelAndView mav = new ModelAndView("edit-adress");
             mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
             return mav;
         }

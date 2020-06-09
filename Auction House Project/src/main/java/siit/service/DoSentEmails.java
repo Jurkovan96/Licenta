@@ -18,7 +18,7 @@ public class DoSentEmails {
 
     private final String sender = "Vart2020@gmail.com";
 
-    public void getMailReady(String email) {
+    public void getMailReady(String email, String password) {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setUsername(emailConfig.getUsername());
         javaMailSender.setPassword(emailConfig.getPassword());
@@ -29,7 +29,7 @@ public class DoSentEmails {
         mailMessage.setFrom(sender);
         mailMessage.setTo(email);
         mailMessage.setSubject("Password Reset");
-        mailMessage.setText("Hello," + userDao.getUserByEmail(email).getName() + " Your new password is: password " + " We strongly recomand to change it after the login!");
+        mailMessage.setText("Hello," + userDao.getUserByEmail(email).getName() + " Your new password is: "+ password + " We strongly recomand to change it after the login!");
 
         javaMailSender.send(mailMessage);
 

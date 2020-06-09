@@ -153,11 +153,12 @@ public class UserService {
 
     public void updateAdress(int id, Adress adress) {
         User user = getUserWithAdress(id);
+        adress.setAdress_id(user.getAdress().getAdress_id());
         if (adress.getCity().matches("")
-        && adress.getCountry().matches("") && adress.getStreet().matches("")) {
+        || adress.getCountry().matches("") || adress.getStreet() == "") {
             throw new ValidationException("adress.malformed");
         }
-        userDao.upadateAdress(adress, id);
+        userDao.upadateAdress(adress);
     }
 
     public void addAdressDefault(int user_id){

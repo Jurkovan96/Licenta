@@ -15,8 +15,4 @@ public class AdressService {
      @Autowired
      public UserDao userDao;
 
-     public void updateAdress(Adress adress){
-          adressDao.updateAdress(adress);
-     }
-
 }

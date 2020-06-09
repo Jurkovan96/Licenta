@@ -17,24 +17,24 @@ public class UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-   // private final String password = "password";
+    // private final String password = "password";
 
-    public User getUserById(int id){
+    public User getUserById(int id) {
         return jdbcTemplate.queryForObject("select * from users where user_id = ?",
                 this::getUser, id);
     }
 
-    public User getUserByEmail(String email){
+    public User getUserByEmail(String email) {
         return jdbcTemplate.queryForObject("select * from users where email = ?",
                 this::getUser, email);
     }
 
-    public User getUserByName(String name){
+    public User getUserByName(String name) {
         return jdbcTemplate.queryForObject("select * from users where name = ?",
                 this::getUser, name);
     }
 
-    public User getUserByPassword(String password){
+    public User getUserByPassword(String password) {
         return jdbcTemplate.queryForObject("select * from users where password = ?",
                 this::getUser, password);
     }
@@ -46,9 +46,9 @@ public class UserDao {
     }
 
 
-    public void updateUser(int user_id, User user){
+    public void updateUser(int user_id, User user) {
         jdbcTemplate.update("update users set name = (?), email = (?), phone_number = (?) where user_id = ?", user.getName(),
-                 user.getEmail(), user.getPhone_number(), user_id);
+                user.getEmail(), user.getPhone_number(), user_id);
     }
 
     private User getUser(ResultSet resultSet, int rowNum) throws SQLException {
@@ -58,11 +58,11 @@ public class UserDao {
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
         user.setPhone_number(resultSet.getString("phone_number"));
-    return user;}
+        return user;
+    }
 
 
-
-    public void addNewUser(String name, String passw, String em, String ph){
+    public void addNewUser(String name, String passw, String em, String ph) {
         jdbcTemplate.update("insert into users (name, password, email, phone_number) values(?, ?, ?, ?)",
                 name, passw, em, ph);
     }
@@ -71,15 +71,18 @@ public class UserDao {
         jdbcTemplate.update("insert into adress (street, number, city, country, user_id)" +
                 "values(?,?,?,?,?)", "default", 1, "default", "default", user_id);
     }
+
     public void resetPassword(String email, String password) {
         jdbcTemplate.update("update users set password = (?) where email = ?",
                 password, email);
     }
 
-    public void upadateAdress(Adress adress, int id) {
-       jdbcTemplate.update("update adress set street = (?), set number = (?), set city = (?), " +
-               "set country = (?) where user_id = ?", adress.getStreet(), adress.getNumber(), adress.getCity(),
-               adress.getCountry(), id);
+    public void upadateAdress(Adress adress) {
+        jdbcTemplate.update("update adress set street = (?) where adress_id = ?",
+                adress.getStreet(),
+//                adress.getCity(),
+//                adress.getCountry(),
+                adress.getAdress_id());
 
     }
 }
