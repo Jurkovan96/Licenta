@@ -7,10 +7,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import siit.db.AuctionDao;
-import siit.db.BidDao;
-import siit.db.ProductDao;
-import siit.db.UserDao;
+import siit.db.*;
 import siit.exceptions.ValidationException;
 import siit.model.*;
 
@@ -39,6 +36,9 @@ public class BidService {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OwenProductsService owenProductsService;
 
     public User getUsersWithBidsById(int id) {
         User user = userDao.getUserById(id);
@@ -104,19 +104,20 @@ public class BidService {
             }
             Bid winBid = bidDao.getBidByValue(maxVal);
             bidDao.upDateBidState(winBid);
-
+            try {
+                owenProductsService.addProductToUser(user_id, winBid.getProduct().getId(), maxVal);
+            }
+            catch (ValidationException e){
+                throw new ValidationException("op.duplicate");
+            }
             for (Bid usBid : userBids) {
                 if (usBid.getBid_value() < maxVal && usBid.getProduct().getId() == winBid.getProduct().getId()) {
                     bidDao.upDateBidStateLost(usBid);
                     doSentMail(user_id, usBid.getBid_id());
                 }
             }
-//       if(ok == true){
-//           bidDao.upDateBidState(winBid);
-//       }
-            //else bidDao.upDateBidStateLost();
-        }
 
+        } else throw new ValidationException("bid.value");
 
     }
 
@@ -146,11 +147,6 @@ public class BidService {
                 "Check the site Vart to claim your prize in the Owned Products section");
 
         javaMailSender.send(mailMessage);
-//           for(Bid userBids: user.getBids()){
-//               if(userBids.getState().equals("WON")){
-//                   javaMailSender.send(mailMessage);
-//               }
-        //   }
     }
 
     public List<Bid> getBidsByUserId(int id) {
@@ -192,14 +188,13 @@ public class BidService {
         Bid bid = getBidWithProductById(bid_id);
         if (bid.getProduct().getAuction().getTime() == 0) {
             setWinningBidsByDate(bid.getProduct().getId(), user_id);
-        }
-
+        } else throw new ValidationException("bid.time");
     }
 
-    public void calculateBidByDate(int user_id){
+    public void calculateBidByDate(int user_id) {
         LocalDate localDate = LocalDate.now();
         List<Bid> bids = getBidsWithProducts(user_id);
-        for(Bid bid: bids) {
+        for (Bid bid : bids) {
             if (bid.getProduct().getAuction().getTime() == 0) {
                 setWinningBidsByDate(bid.getProduct().getId(), user_id);
             }
@@ -212,7 +207,9 @@ public class BidService {
         setWinningBidsByDate(bid.getProduct().getId(), user_id);
     }
 
-    public void getCounter(int user_id) {
 
+    public List<Bid> getWonBidsByUserId(int user_id) {
+     List<Bid> bids = bidDao.getBidsByStateForUserId(user_id);
+     return bids;
     }
 }

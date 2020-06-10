@@ -1,12 +1,12 @@
 package siit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import siit.model.Bid;
-import siit.model.Product;
+
+import siit.exceptions.ValidationException;
 import siit.service.BidService;
 import siit.service.ProductService;
 import siit.service.UserService;
@@ -15,22 +15,21 @@ import siit.service.UserService;
 @RequestMapping("mainpage/{id}/about")
 public class BidController {
 
-     @Autowired
-     public BidService bidService;
+    @Autowired
+    public BidService bidService;
 
-     @Autowired
-     public UserService userService;
+    @Autowired
+    public UserService userService;
 
-     @Autowired
-     public ProductService productService;
+    @Autowired
+    public ProductService productService;
 
 
     @GetMapping
-    public ModelAndView doAboutPage(@PathVariable int id){
+    public ModelAndView doAboutPage(@PathVariable int id) {
         ModelAndView mav = new ModelAndView("mainpage-about");
         mav.addObject("user", userService.getUserById(id));
         mav.addObject("bids", bidService.getBidsWithProducts(id));
-       // mav.addObject("timer", bidService.getCounter(id));
 
         return mav;
     }
@@ -50,7 +49,11 @@ public class BidController {
 
     @GetMapping("/{bidId}/update2")
     public String updateWinBids(@PathVariable int id, @PathVariable int bidId) {
-        bidService.calculateBidByDate(id);
+        try{
+        bidService.calculateBidByDate(id);}
+        catch (ValidationException e){
+            return "redirect:/mainpage/" + id + "/settings";
+        }
         //bidService.setBisState(bidId, id);
         return "redirect:/mainpage/" + id + "/about";
     }

@@ -77,14 +77,16 @@ public class MainPageController {
     public ModelAndView doViewEditUserAdress(@PathVariable int id) {
         ModelAndView mav = new ModelAndView("edit-adress");
         mav.addObject("user", userService.getUserWithAdress(id));
-       // mav.addObject("adress", userService.getUserWithAdress(id));
+        mav.addObject("adress", adressService.getAdressForUserId(id));
         return mav;
     }
 
     @PostMapping("/{id}/settings/edit-adress")
     public ModelAndView doEditUserAdress(@PathVariable int id, @ModelAttribute Adress adress) {
+
+        Adress adress1 = userService.getUserWithAdress(id).getAdress();
         try {
-            userService.updateAdress(id, adress);
+            adressService.updateAdress(id, adress);
 
         } catch (ValidationException e) {
             ModelAndView mav = new ModelAndView("edit-adress");

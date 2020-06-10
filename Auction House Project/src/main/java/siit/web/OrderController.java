@@ -44,7 +44,7 @@ public class OrderController {
        ModelAndView mav = new ModelAndView();
        mav.setViewName("order-view");
        mav.addObject("user", bidService.getUsersWithBidsById(id));
-       mav.addObject("order", orderService.getOrderById(ord_id));
+      // mav.addObject("order", orderService.getOrderById(ord_id));
        return mav;
     }
 

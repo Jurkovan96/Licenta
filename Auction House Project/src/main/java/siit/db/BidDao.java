@@ -75,4 +75,8 @@ public class BidDao {
         jdbcTemplate.update("update bids set bid_state = (?) where id = ?",
             "LOST", winBid.getBid_id());
     }
+
+    public List<Bid> getBidsByStateForUserId(int user_id) {
+     return jdbcTemplate.query("select * from bids where bid_state = ? and user_id = ?", this::mapBid,"WON", user_id);
+    }
 }

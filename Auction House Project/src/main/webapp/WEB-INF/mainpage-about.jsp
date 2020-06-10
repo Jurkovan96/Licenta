@@ -57,7 +57,7 @@
                 <th>Status</th>
                 <th>Product</th>
                 <th>Actions</th>
-                <th><img src="/static/images/refreshIcon.png" width="25px" height="25px"></th>
+                <th>Actions</th>
             </tr>
                     <c:forEach items="${bids}" var="bidd">
                         <c:set value="${bidd.product}" var="product"/>
@@ -75,8 +75,8 @@
                         <form id="formButtonsBids" role="form" method="post">
                             <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/delete"/> "
                                class="btn btn-info"><img src="/static/images/deleteIcon.png" width="25px" height="25px"></a>
-<%--                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/update"/> "--%>
-<%--                               class="btn btn-info">Update</a>--%>
+                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/update2"/> "
+                               class="btn btn-info"><img src="/static/images/refreshIcon.png" width="25px" height="25px"></a>
 
                         </form>
                     </td>

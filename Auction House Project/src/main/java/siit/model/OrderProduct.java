@@ -4,7 +4,7 @@ public class OrderProduct {
 
    private int order_id;
    private int bid_ord_id;
-   private Bid bid;
+   private Owen_products owen_products;
    private int price;
 
     public int getOrder_id() {
@@ -23,12 +23,12 @@ public class OrderProduct {
         this.bid_ord_id = bid_ord_id;
     }
 
-    public Bid getBid() {
-        return bid;
+    public Owen_products getOwen_products() {
+        return owen_products;
     }
 
-    public void setBid(Bid bid) {
-        this.bid = bid;
+    public void setOwen_products(Owen_products owen_products) {
+        this.owen_products = owen_products;
     }
 
     public int getPrice() {

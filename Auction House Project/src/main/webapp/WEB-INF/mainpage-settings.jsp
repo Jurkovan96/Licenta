@@ -7,8 +7,6 @@
     <meta name="keywords" content="website keywords, website keywords"/>
     <meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style"/>
-
-
     <script type="text/javascript" src="/static/js/custom.js"></script>
 </head>
 
@@ -23,19 +21,24 @@
                 <div id="imgDiv">
                     <img id="imgSettings" src="/static/images/settingscolor.png" alt="Not found!" width="25px">
                     <ul id="userSettings">
-                        <li><a href="/mainpage/${user.id}/settings">Edit user data</a></li>
-                        <li><a href="/mainpage/${user.id}/settings/edit-adress">Edit adress</a></li>
+                        <li><a href="/mainpage/${user.id}/settings" style="text-decoration: none">Edit user data</a></li>
+                        <li><a href="/mainpage/${user.id}/settings/edit-adress" style="text-decoration: none">Edit adress</a></li>
                     </ul>
 
                 </div>
             </a>
+            <div id="logoutUser">
+                <a href="/mainpage/logout" class="logOut">Logout</a>
+
+            </div>
 
         </div>
+
+
     </div>
     <div id="header">
         <div id="logo">
             <div id="logo_text">
-                <!-- class="logo_colour", allows you to change the colour of the text -->
                 <h1><a href="index.html">colour<span class="logo_colour">orange</span></a></h1>
                 <h2>Simple. Contemporary. Website Template.</h2>
             </div>
@@ -43,14 +46,13 @@
         <div id="menubar">
             <ul id="menu">
 
-
                 <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
                 <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
                 <li><a href="/mainpage/${user.id}/contact">Your auctions</a></li>
                 <li><a href="/mainpage/${user.id}/settings">Account Settings</a></li>
                 <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
-                <li><a href="/mainpage/logout" class="bn">Logout</a></li>
+<%--                <li><a href="/mainpage/logout" class="bn">Logout</a></li>--%>
             </ul>
         </div>
     </div>

@@ -64,10 +64,12 @@ public class ProductService {
         product.getAuction().setTime(timeB);
     }
 
-    public Product getProductWithDescriptionById(int prod_id){
+    public Product getProductWithDescriptionById(int prod_id) {
         Product product = productDao.getProductById(prod_id);
         ProductDescription description = descriptionDao.getProductTextByProductId(prod_id);
         product.setDescription(description);
         return product;
     }
+
+
 }

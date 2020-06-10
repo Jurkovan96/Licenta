@@ -39,6 +39,8 @@
                 <h2>Simple. Contemporary. Website Template.</h2>
             </div>
         </div>
+
+        <c:set value="${user.id}" var="user_id"/>
         <div id="menubar">
             <ul id="menu">
                 <li><a href="/mainpage/${user.id}">Home Page</a></li>
@@ -61,27 +63,27 @@
         </c:if>
 
         <form class="form-horizontal" role="form" method="post" action="/mainpage/${user.id}/settings/edit-adress">
-
+            <c:set value="${adress}" var="add"/>
             <label class="control-label col-sm-2" for="adressCountrt">Country:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="adressCountrt" name="country"
-                       value="<c:out value="${user.adress.city}"/>"/>
+                       value="<c:out value="${add.country}"/>"/>
             </div>
             <label class="control-label col-sm-2" for="adressCity">City:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="adressCity" name="city" value="<c:out value="${user.adress.city}"/>"/>
+                <input type="text" class="form-control" id="adressCity" name="city" value="<c:out value="${add.city}"/>"/>
             </div>
 
             <label class="control-label col-sm-2" for="addresStreet">Street:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="addresStreet" name="street"
-                       value="<c:out value="${user.adress.street}"/>"/>
+                       value="<c:out value="${add.street}"/>"/>
             </div>
 
             <label class="control-label col-sm-2" for="adressNumber">Number:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="adressNumber" name="number"
-                       value="<c:out value="${user.adress.number}"/>"/>
+                       value="<c:out value="${add.number}"/>"/>
             </div>
             <br>
 

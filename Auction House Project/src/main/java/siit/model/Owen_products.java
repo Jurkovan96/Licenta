@@ -7,12 +7,20 @@ public class Owen_products {
     private String name;
     private int lenght;
     private int width;
-    private String year;
+    private int year;
     private String tehn;
     private String artist;
     private String url;
     private int pay_value;
+    private int user_id;
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public int getOp_id() {
         return op_id;
@@ -54,11 +62,11 @@ public class Owen_products {
         this.width = width;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
@@ -93,4 +101,6 @@ public class Owen_products {
     public void setPay_value(int pay_value) {
         this.pay_value = pay_value;
     }
+
+
 }

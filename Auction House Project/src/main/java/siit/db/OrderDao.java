@@ -3,10 +3,7 @@ package siit.db;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import siit.model.Bid;
-import siit.model.Order;
-import siit.model.OrderProduct;
-import siit.model.Product;
+import siit.model.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +24,6 @@ public class OrderDao {
         Order order = new Order();
         order.setNumber(resultSet.getInt("ord_number"));
         order.setOder_id(resultSet.getInt("order_id"));
-
         return order;
     }
 
@@ -42,37 +38,35 @@ public class OrderDao {
     }
 
     public List<OrderProduct> getOrderProductsForOrderById(int id){
-        return jdbcTemplate.query("select * from bids_orders where order_id = ?",
+        return jdbcTemplate.query("select * from order_products where order_id = ?",
                 this::mapOrderProducts, id);
     }
 
     private OrderProduct mapOrderProducts(ResultSet resultSet, int i) throws SQLException{
        OrderProduct orderProduct = new OrderProduct();
-       orderProduct.setBid_ord_id(resultSet.getInt("bid_ord_id"));
+       orderProduct.setBid_ord_id(resultSet.getInt("ordprod_id"));
        orderProduct.setOrder_id(resultSet.getInt("order_id"));
-       Bid bid = new Bid();
-       bid.setBid_id(resultSet.getInt("id"));
-       orderProduct.setBid(bid);
+       orderProduct.setPrice(resultSet.getInt("value_op"));
        return orderProduct;
     }
 
 
     public List<OrderProduct> getOrderProducts() {
-        return jdbcTemplate.query("select * from bids_orders",
+        return jdbcTemplate.query("select * from order_products",
         this::mapOrderProducts);
     }
-
-    public void addOrderProduct(OrderProduct orderProduct) {
-        jdbcTemplate.update("insert into bids_orders (id, order_id, price) values (?,?,?)",
-                orderProduct.getBid().getBid_id(), orderProduct.getOrder_id(), orderProduct.getBid().getBid_value());
-    }
+//
+//    public void addOrderProduct(OrderProduct orderProduct) {
+//        jdbcTemplate.update("insert into order_products (, order_id, price) values (?,?,?)",
+//                orderProduct.getBid().getBid_id(), orderProduct.getOrder_id(), orderProduct.getBid().getBid_value());
+//    }
 
     public void addOrderForUser(Order order, int user_id) {
         jdbcTemplate.update("insert into orders (user_id, ord_number, ord_value) values(?,?,?)", user_id, order.getNumber(),order.getValue());
     }
 
     public void deleteOrderProduct(int ord_id){
-        jdbcTemplate.update("delete from bids_orders where order_id = ?", ord_id);
+        jdbcTemplate.update("delete from order_products where order_id = ?", ord_id);
     }
 
     public void deleteOrderById(int ord_id) {

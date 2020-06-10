@@ -68,7 +68,7 @@ public class UserDao {
     }
 
     public void addDefaultAdressForUserId(int user_id) {
-        jdbcTemplate.update("insert into adress (street, number, city, country, user_id)" +
+        jdbcTemplate.update("insert into adresses (adr_st, adr_num, adr_ct, adr_cnt, user_id)" +
                 "values(?,?,?,?,?)", "default", 1, "default", "default", user_id);
     }
 
@@ -77,12 +77,5 @@ public class UserDao {
                 password, email);
     }
 
-    public void upadateAdress(Adress adress) {
-        jdbcTemplate.update("update adress set street = (?) where adress_id = ?",
-                adress.getStreet(),
-//                adress.getCity(),
-//                adress.getCountry(),
-                adress.getAdress_id());
 
-    }
 }
