@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import siit.model.Product;
-
+import siit.model.ProductDescription;
 
 
 import java.sql.ResultSet;
@@ -46,6 +46,7 @@ public class ProductDao {
 
     private Product getProduct(ResultSet resultSet, int rowNum) throws SQLException {
         Product product = new Product();
+
         product.setName(resultSet.getString("name"));
         product.setId(resultSet.getInt("product_id"));
         product.setArtist(resultSet.getString("artist"));
@@ -55,10 +56,16 @@ public class ProductDao {
         product.setYear(resultSet.getString("year"));
         product.setValue(resultSet.getInt("minvaluep"));
         product.setUrl(resultSet.getString("b64code"));
-        return product;}
+        return product;
+    }
 
     public Product getProductForBid(int bid_id) {
         return jdbcTemplate.queryForObject("select * from products where product_id = ?",
                 this::getProduct, bid_id);
     }
+
+
+
+
+
 }

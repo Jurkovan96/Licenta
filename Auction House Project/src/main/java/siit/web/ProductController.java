@@ -27,7 +27,7 @@ public class ProductController {
     @GetMapping
     public ModelAndView doDisplayProducts(@PathVariable int id) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("mainpage-productsv");
+        mav.setViewName("mainpage-products");
         mav.addObject("user", userService.getUserById(id));
         mav.addObject("products", productService.getProductsWithTime());
         mav.addObject("auctionDates", productService.getProductsWithTime());
@@ -41,16 +41,14 @@ public class ProductController {
         mav.addObject("user", bidService.getUsersWithBidsById(id));
         mav.addObject("bids", bidService.getBidsByUserId(id));
         mav.addObject("max_value", bidService.setMaxCurrentMaxValue(proid));
-        mav.addObject("product", productService.getProductById(proid));
-
-
-
+        mav.addObject("product", productService.getProductWithDescriptionById(proid));
+        //mav.addObject("product", productService.getProductById(proid));
         return mav;}
 
     @PostMapping("/{proid}&{name}/view")
     public ModelAndView doAddaProductBid(@PathVariable int id, @PathVariable int proid,
                                          @RequestParam int bidVal) throws Exception {
-            Product product1 = productService.getProductById(proid);
+            Product product1 = productService.getProductWithDescriptionById(proid);
             try{bidService.addABid(product1, id, bidVal);
             }
             catch (Exception e){

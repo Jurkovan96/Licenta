@@ -3,21 +3,18 @@
 <html>
 <head>
     <title>colour_orange - contact us</title>
-    <meta name="description" content="website description" />
-    <meta name="keywords" content="website keywords, website keywords" />
-    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style" />
-<%--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
-<%--          rel="stylesheet"--%>
-<%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"--%>
-<%--          crossorigin="anonymous">--%>
+    <meta name="description" content="website description"/>
+    <meta name="keywords" content="website keywords, website keywords"/>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" title="style"/>
+
 </head>
 
 <body>
 <div id="main">
     <div id="loggedUser">
         <div id="textBox">
-            <h4 id="userText">Hello,  <c:out value="${user.name}"  /> !</h4>
+            <h4 id="userText">Hello, <c:out value="${user.name}"/> !</h4>
 
             <a href="#">
 
@@ -44,8 +41,8 @@
                 <li><a href="/mainpage/${user.id}">Home Page</a></li>
                 <li><a href="/mainpage/${user.id}/products">Art</a></li>
                 <li><a href="/mainpage/${user.id}/about">Auctions</a></li>
-                <li><a href="/mainpage/${user.id}/contact" >Your auctions</a></li>
-                <li><a href="/mainpage/${user.id}/settings" >Account Settings</a></li>
+                <li><a href="/mainpage/${user.id}/contact">Your auctions</a></li>
+                <li><a href="/mainpage/${user.id}/settings">Account Settings</a></li>
                 <li><a href="/mainpage/${user.id}/orders">Orders</a></li>
                 <li><a href="/mainpage/logout" class="bn">Logout</a></li>
             </ul>
@@ -55,22 +52,40 @@
     <div id="site_content">
         <c:set value="${product}" var="prod"/>
         <c:set value="${bids}" var="bid"/>
-<c:set value="${max_value}" var="maxV"/>
-
-<form role="form" method="post">
+        <c:set value="${max_value}" var="maxV"/>
 
 
-<div>
-    <label id="prod_name" > ${prod.name}</label>
-    <label id="description" >${prod.artist}</label>
-</div>
-<%--    <c:if test="${maxV=0}"><label for="prod_value" id="prod_value" >The bid value must be greater that ${prod.value}</label></c:if>--%>
-    <label for="prod_value" id="prod_value" >The bid value must be greater that ${maxV}</label>
-    <input type="text" id="bidVal" name="bidVal" placeholder="Bid value">
-<button> Make a bid </button>
+        <div class="Products">
+            <img class="imagesForProducts" src="<c:out value="${product.url}"/>">
+            <div class="details">
+                <h2><c:out value="${product.name}"/></h2>
+                <h5>Dimensions:<c:out value="${product.width}"/>x<c:out value="${product.lenght}"/></h5>
 
-    </form>
-</div>
+            </div>
+
+        </div>
+
+
+        <form id="detailsForm" role="form" method="post">
+
+            <h4><c:out value="${product.description.desc}"/></h4>
+            <h4>Made by: <c:out value="${product.artist}"/></h4>
+            <h5>Tehnique used: <c:out value="${product.tehn}"/></h5>
+
+            <br>
+            <c:if test="${not empty maxV}">
+                <label for="prod_value" id="prod_value"> Current max value per product is ${maxV}</label></c:if>
+            <c:if test="${product.value > 0}">
+                <br>
+            <label for="prod_value" id="prod_value">The bid value must be greater
+                than ${product.value}</label>
+                </c:if>
+            <br>
+            <input type="text" id="bidVal" name="bidVal" placeholder="Bid value">
+            <button>Add a bid</button>
+
+        </form>
+    </div>
 </div>
 </body>
 </html>

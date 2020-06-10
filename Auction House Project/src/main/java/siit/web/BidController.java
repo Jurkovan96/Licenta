@@ -48,5 +48,12 @@ public class BidController {
         return "redirect:/mainpage/" + id + "/about";
     }
 
+    @GetMapping("/{bidId}/update2")
+    public String updateWinBids(@PathVariable int id, @PathVariable int bidId) {
+        bidService.calculateBidByDate(id);
+        //bidService.setBisState(bidId, id);
+        return "redirect:/mainpage/" + id + "/about";
+    }
+
 
 }

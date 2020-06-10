@@ -48,7 +48,7 @@
     </div>
     <div id="content_header"></div>
     <div id="site_content">
-        <table class="table table-striped">
+        <table class="tblBids">
             <tr>
                 <th>Bid</th>
                 <th>Value</th>
@@ -57,12 +57,13 @@
                 <th>Status</th>
                 <th>Product</th>
                 <th>Actions</th>
+                <th><img src="/static/images/refreshIcon.png" width="25px" height="25px"></th>
             </tr>
                     <c:forEach items="${bids}" var="bidd">
                         <c:set value="${bidd.product}" var="product"/>
                 <tr>
 
-                    <td><c:out value="${bidd.bid_id}" /></td>
+                    <td><a style="text-decoration: none; color: black !important;" href="<c:url value="/mainpage/${user.id}/contact"/>"><c:out value="${bidd.bid_id}"/> </a></td>
                     <td><c:out value="${bidd.bid_value}" /></td>
                     <td><c:out value="${bidd.start_date}" /></td>
                     <td><c:out value="${bidd.end_date}" /></td>
@@ -73,9 +74,9 @@
 
                         <form id="formButtonsBids" role="form" method="post">
                             <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/delete"/> "
-                               class="btn btn-info">Delete</a>
-                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/update"/> "
-                               class="btn btn-info">Update</a>
+                               class="btn btn-info"><img src="/static/images/deleteIcon.png" width="25px" height="25px"></a>
+<%--                            <a href="<c:url value="/mainpage/${user.id}/about/${bidd.bid_id}/update"/> "--%>
+<%--                               class="btn btn-info">Update</a>--%>
 
                         </form>
                     </td>

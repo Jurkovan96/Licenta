@@ -3,8 +3,10 @@ package siit.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import siit.db.AuctionDao;
+import siit.db.DescriptionDao;
 import siit.db.ProductDao;
 import siit.model.Product;
+import siit.model.ProductDescription;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -18,6 +20,9 @@ public class ProductService {
 
     @Autowired
     private AuctionDao auctionDao;
+
+    @Autowired
+    private DescriptionDao descriptionDao;
 
     public List<Product> getProducts() {
         return productDao.getProducts();
@@ -59,4 +64,10 @@ public class ProductService {
         product.getAuction().setTime(timeB);
     }
 
+    public Product getProductWithDescriptionById(int prod_id){
+        Product product = productDao.getProductById(prod_id);
+        ProductDescription description = descriptionDao.getProductTextByProductId(prod_id);
+        product.setDescription(description);
+        return product;
+    }
 }

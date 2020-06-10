@@ -12,9 +12,15 @@ public class Product {
     private String url;
     private int value;
     private Auction auction;
+    private ProductDescription description;
 
+    public ProductDescription getDescription() {
+        return description;
+    }
 
-
+    public void setDescription(ProductDescription description) {
+        this.description = description;
+    }
 
     public Auction getAuction() {
         return auction;

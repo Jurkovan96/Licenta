@@ -196,6 +196,16 @@ public class BidService {
 
     }
 
+    public void calculateBidByDate(int user_id){
+        LocalDate localDate = LocalDate.now();
+        List<Bid> bids = getBidsWithProducts(user_id);
+        for(Bid bid: bids) {
+            if (bid.getProduct().getAuction().getTime() == 0) {
+                setWinningBidsByDate(bid.getProduct().getId(), user_id);
+            }
+        }
+    }
+
 
     public void setBisState(int bid_id, int user_id) {
         Bid bid = bidDao.getBidId(bid_id);
