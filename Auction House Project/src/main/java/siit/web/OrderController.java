@@ -1,9 +1,7 @@
 package siit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import siit.model.Order;
@@ -53,8 +51,7 @@ public class OrderController {
     public ModelAndView doOrders(@PathVariable int id, @RequestParam int ord_num){
         ModelAndView modelAndView = new ModelAndView();
         Order order = new Order();
-        order.setNumber(ord_num);
-        orderService.addOrderForUser(id, order);
+        orderService.addOrderForUser(id);
         modelAndView.setViewName("redirect:/mainpage/" + id);
         return modelAndView;
     }

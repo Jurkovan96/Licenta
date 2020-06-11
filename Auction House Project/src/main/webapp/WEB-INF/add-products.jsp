@@ -53,25 +53,43 @@
 <div id="content_header"></div>
 <div id="site_content">
 
+    <c:if test="${not empty error}">
+        <div class="alert alert-danger">Error: ${error}</div>
+    </c:if>
 
-    <c:forEach items="${owneProducts}" var="owP">
-        <h4><c:out value="${owP.artist}"/></h4>
-        <h4><c:out value="${owP.tehn}"/></h4>
-        <h4><c:out value="${owP.name}"/></h4>
-        <h4><c:out value="${owP.pay_value}"/></h4>
-        <h4><c:out value="${owP.width}"/></h4>
-        <h4><c:out value="${owP.lenght}"/></h4>
-        <h4><c:out value="${owP.artist}"/></h4>
-        <h4><c:out value="${owP.artist}"/></h4>
+    <table class="tblBids">
+        <tr>
+            <th>Product price</th>
+            <th>Bid date</th>
+            <th>Product name</th>
+            <th>Actions</th>
 
-    </c:forEach>
+        </tr>
+        <c:forEach items="${ownedBids}" var="owB">
+            <c:set value="${owB.product}" var="productForBid"/>
+            <tr>
 
-    <c:forEach items="${ownedBids}" var="owB">
-        <h4><c:out value="${owB.bid_value}"/></h4>
-        <h4></h4>
+                    <%--                <td><a style="text-decoration: none; color: black !important;"--%>
+                    <%--                       href="<c:url value="/mainpage/${user.id}/contact"/>"><c:out value="${bidd.bid_id}"/> </a>--%>
+                    <%--                </td>--%>
+                <td><c:out value="${owB.bid_value}"/></td>
+                <td><c:out value="${owB.start_date}"/></td>
+                <td><c:out value="${productForBid.name}"/></td>
+                <td>
 
+                    <form id="formButtonsBids" role="form" method="post">
+                        <a href="<c:url value="/mainpage/${user.id}/products/viewProducts/${productForBid.id}/addtoOrder"/> "
+                           class="btn btn-info"><img src="/static/images/add.png" width="25px" height="25px"></a>
+                        <a href="<c:url value="/mainpage/${user.id}/products/${productForBid.id}&${productForBid.name}/view"/> "
+                           class="btn btn-info"><img src="/static/images/redirect.png" width="25px"
+                                                     height="25px"></a>
+                    </form>
+                </td>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
 
-    </c:forEach>
 
 </div>
 

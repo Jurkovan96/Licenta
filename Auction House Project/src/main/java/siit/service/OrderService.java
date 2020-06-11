@@ -3,10 +3,7 @@ package siit.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import siit.db.BidDao;
-import siit.db.OrderDao;
-import siit.db.ProductDao;
-import siit.db.UserDao;
+import siit.db.*;
 import siit.model.*;
 
 import java.util.HashMap;
@@ -37,6 +34,12 @@ public class OrderService {
     @Autowired
     private OwenProductsService owenProductsService;
 
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private OwenProductsDao owenProductsDao;
+
 
     public User getOrderProductsWithBidsByUser(int user_id) {
 
@@ -47,31 +50,30 @@ public class OrderService {
 //           populateOrderProducts(o, bidMap);}
         user.setOrders(orders);
 
-
         return user;
     }
 
-    public void addOrderForUser(int user_id, Order order) {
-        orderDao.addOrderForUser(order, user_id);
+    public void addOrderForUser(int user_id) {
+        orderDao.addOrderForUserById(user_id);
     }
 
 
-//    public Order getOrderById(int order_id) {
-//        Order order = orderDao.getOrderById(order_id);
-//        populateOrderProducts(order, new HashMap<>());
-//        return order;
-//    }
-//
+    public Order getOrderById(int order_id) {
+        Order order = orderDao.getOrderById(order_id);
+        populateOrderProducts(order, new HashMap<>());
+        return order;
+    }
 
-//    private void populateOrderProducts(Order order, Map<Integer, Bid> bidMap) {
-//        order.setOrderProductList(
-//                orderDao.getOrderProductsForOrderById(order.getOder_id()));
-//        for (OrderProduct orderProduct : order.getOrderProductList()) {
-//            Bid bid = bidService.getBidWithProductById(orderProduct.getBid().getBid_id());
-//            bidMap.putIfAbsent(orderProduct.getBid().getBid_id(), bid);
-//            orderProduct.setBid(bid);
-//        }
-//    }
+
+    private void populateOrderProducts(Order order, Map<Integer, Owen_products> bidMap) {
+        order.setOrderProductList(
+                orderDao.getOrderProductsForOrderById(order.getOder_id()));
+        for (OrderProduct orderProduct : order.getOrderProductList()) {
+            Owen_products product = owenProductsService.getOwnedProductById(orderProduct.getProduct().getOp_id());
+            bidMap.computeIfAbsent(orderProduct.getProduct().getOp_id(), owenProductsDao::getOwenProductsByProductId);
+            orderProduct.setProduct(product);
+        }
+    }
 
 
     private List<Order> getOrdersWithOrderProducts(int user_id) {
@@ -79,7 +81,7 @@ public class OrderService {
         for (Order o : orders) {
             o.setOrderProductList(orderDao.getOrderProductsForOrderById(o.getOder_id()));
             for (OrderProduct op : o.getOrderProductList()) {
-                op.setOwen_products(owenProductsService.getOwnedProductById(op.getOwen_products().getOp_id()));
+                op.setProduct(owenProductsService.getOwnedProductById(op.getProduct().getOp_id()));
             }
         }
         return orders;
@@ -123,4 +125,20 @@ public class OrderService {
         orderDao.deleteOrderProduct(ord_id);
         orderDao.deleteOrderById(ord_id);
     }
+
+    public void addProductForOrder(int id, int product_id) {
+        orderDao.addOrderForUserById(id);
+    }
+
+    public void addProductForOrderProduct(int id, int product_id) {
+        orderDao.addOrderForUserById(id);
+        Order order = getOrderByUserId(id);
+        Owen_products owen_products = owenProductsService.getOwnedProductByProductId(product_id);
+        orderDao.addProductToOrderProduct(order.getOder_id(), owen_products.getOp_id(), owen_products.getPay_value());
+
+
+
+    }
+
+
 }

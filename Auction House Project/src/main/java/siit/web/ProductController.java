@@ -83,23 +83,38 @@ public class ProductController {
     public ModelAndView doViewOwnedProducts(@PathVariable int id) {
         ModelAndView mav = new ModelAndView("add-products");
         mav.addObject("user", userService.getUserById(id));
-        mav.addObject("owneProducts", owenProductsService.getUserProductsByUserId(id));
-        mav.addObject("ownedBids", bidService.getWonBidsByUserId(id));
+        // mav.addObject("owneProducts", owenProductsService.getUserProductsByUserId(id));
+        mav.addObject("ownedBids", bidService.getWonBidsWithProducts(id));
         return mav;
     }
 
     //De implementat!
     @GetMapping("/viewProducts/{product_id}/addtoOrder")
-    public ModelAndView doAddProductToOrder(@PathVariable int id, @PathVariable int product_id) {
-        ModelAndView mav = new ModelAndView();
+    public String doAddProductToOrder(@PathVariable int id, @PathVariable int product_id) {
+
         try {
-//            orderService.addProductForOrder(id, product_id);
-//            mav.addObject("");
+            orderService.addProductForOrderProduct(id, product_id);
+
         } catch (ValidationException e) {
-            mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
-            mav.setViewName("redirect:/viewProducts");
+            return "redirect:/mainpage/" + id + "/products/viewProducts";
         }
-    return mav;
+
+        return "redirect:/mainpage/" + id + "/products/viewProducts";
     }
+
+
+//    public ModelAndView doAddProductToOrder(@PathVariable int id, @PathVariable int product_id) {
+//        ModelAndView mav = new ModelAndView();
+//        try {
+//            orderService.addProductForOrder(id, product_id);
+//
+//        } catch (ValidationException e) {
+//            //mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
+//            //mav.setViewName("redirect:/mainpage/" + id + "/products/" + product_id +"/viewProducts");
+//            mav.setViewName("add-products");
+//        }
+//        return mav;
+//    }
+
 
 }

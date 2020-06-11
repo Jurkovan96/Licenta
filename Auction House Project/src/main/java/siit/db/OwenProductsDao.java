@@ -60,5 +60,9 @@ public class OwenProductsDao {
     public Owen_products getOwenProductForOrderProduct(int op_id) {
         return jdbcTemplate.queryForObject("select * from owen_product where op_id = ?", this::mapOwP, op_id);
     }
+
+    public Owen_products getOwenProductByProductId(int product_id) {
+        return jdbcTemplate.queryForObject("select * from owen_product where product_id = ?", this::mapOwP, product_id);
+    }
 }
 

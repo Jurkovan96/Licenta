@@ -212,4 +212,16 @@ public class BidService {
      List<Bid> bids = bidDao.getBidsByStateForUserId(user_id);
      return bids;
     }
+
+    public List<Bid> getWonBidsWithProducts(int user_id) {
+        List<Bid> bids = bidDao.getBidsByStateForUserId(user_id);
+        for (Bid bidd : bids) {
+            Product product = productDao.getProductForBid(bidd.getProduct().getId());
+            Auction auction = auctionDao.getAuctionForProduct(product.getId());
+            auction.setTime(ChronoUnit.DAYS.between(LocalDate.now(), auction.getEnd_date()));
+            product.setAuction(auction);
+            bidd.setProduct(product);
+        }
+        return bids;
+    }
 }

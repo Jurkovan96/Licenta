@@ -48,4 +48,8 @@ public class OwenProductsService {
     }
 
 
+    public Owen_products getOwnedProductByProductId(int product_id) {
+        Owen_products owen_products = owenProductsDao.getOwenProductByProductId(product_id);
+        return owen_products;
+    }
 }

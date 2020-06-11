@@ -2,10 +2,10 @@ package siit.model;
 
 public class OrderProduct {
 
-   private int order_id;
-   private int bid_ord_id;
-   private Owen_products owen_products;
-   private int price;
+    private int order_id;
+    private int order_prod_id;
+    private Owen_products product;
+    private int produc_sale_value;
 
     public int getOrder_id() {
         return order_id;
@@ -15,27 +15,27 @@ public class OrderProduct {
         this.order_id = order_id;
     }
 
-    public int getBid_ord_id() {
-        return bid_ord_id;
+    public int getOrder_prod_id() {
+        return order_prod_id;
     }
 
-    public void setBid_ord_id(int bid_ord_id) {
-        this.bid_ord_id = bid_ord_id;
+    public void setOrder_prod_id(int order_prod_id) {
+        this.order_prod_id = order_prod_id;
     }
 
-    public Owen_products getOwen_products() {
-        return owen_products;
+    public Owen_products getProduct() {
+        return product;
     }
 
-    public void setOwen_products(Owen_products owen_products) {
-        this.owen_products = owen_products;
+    public void setProduct(Owen_products product) {
+        this.product = product;
     }
 
-    public int getPrice() {
-        return price;
+    public int getProduc_sale_value() {
+        return produc_sale_value;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setProduc_sale_value(int produc_sale_value) {
+        this.produc_sale_value = produc_sale_value;
     }
 }
