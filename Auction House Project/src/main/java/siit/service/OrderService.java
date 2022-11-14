@@ -3,8 +3,9 @@ package siit.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import siit.db.*;
+import siit.db.repository.dao.impl.*;
 import siit.model.*;
+import siit.model.User;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +29,8 @@ public class OrderService {
     @Autowired
     private ProductDao productDao;
 
-    @Autowired
-    private BidService bidService;
+//    @Autowired
+//    private BidService bidService;
 
     @Autowired
     private OwenProductsService owenProductsService;
@@ -65,7 +66,7 @@ public class OrderService {
     }
 
 
-    private void populateOrderProducts(Order order, Map<Integer, Owen_products> bidMap) {
+    private void populateOrderProducts(Order order, Map<java.lang.Integer, Owen_products> bidMap) {
         order.setOrderProductList(
                 orderDao.getOrderProductsForOrderById(order.getOder_id()));
         for (OrderProduct orderProduct : order.getOrderProductList()) {

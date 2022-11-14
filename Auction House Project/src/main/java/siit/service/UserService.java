@@ -1,17 +1,14 @@
 package siit.service;
 
-import siit.db.AdressDao;
-import siit.db.BidDao;
-import siit.exceptions.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import siit.db.UserDao;
-import siit.model.Adress;
+import siit.db.repository.dao.impl.AddressDAO;
+import siit.db.repository.dao.impl.BidDao;
+import siit.db.repository.dao.impl.UserDao;
+import siit.exception.ValidationException;
 import siit.model.CryptoByte;
 import siit.model.User;
 
-import javax.jws.soap.SOAPBinding;
-import javax.naming.AuthenticationException;
 import java.util.List;
 
 @Service
@@ -24,7 +21,7 @@ public class UserService {
     private BidDao bidsDao;
 
     @Autowired
-    private AdressDao adressDao;
+    private AddressDAO addressDao;
 
     @Autowired
     private CryptoByte cryptoByte;
@@ -83,11 +80,11 @@ public class UserService {
     }
 
 
-    public User getUserWithAdress(int id) {
-        User user = userDao.getUserById(id);
-        user.setAdress(adressDao.getAdressByUserId(id));
-        return user;
-    }
+//    public User getUserWithAdress(int id) {
+//        User user = userDao.getUserById(id);
+//        user.setAdress(addressDao.findAddressByUserId(id));
+//        return user;
+//    }
 
    //Nu stiu ce pula mea are...
     public void addNewUserService(String name, String passw, String em, String ph) {

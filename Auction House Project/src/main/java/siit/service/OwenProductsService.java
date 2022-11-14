@@ -2,8 +2,8 @@ package siit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import siit.db.OwenProductsDao;
-import siit.exceptions.ValidationException;
+import siit.db.repository.dao.impl.OwenProductsDao;
+import siit.exception.ValidationException;
 import siit.model.Owen_products;
 import siit.model.Product;
 

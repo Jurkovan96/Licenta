@@ -1,0 +1,23 @@
+@startuml
+
+class Auction {
+     - String streetName;
+     - Integer number;
+     - String city;
+     - String country;
+     - Set<Bid> bids
+}
+Auction "1" *--> "many" Bid
+
+class Bid {
+
+}
+Bid "1" *--> "1" Product
+
+class Product {
+
+}
+
+
+
+@enduml

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import siit.exceptions.ValidationException;
+import siit.exception.ValidationException;
 import java.util.Locale;
 
 import siit.model.CryptoByte;

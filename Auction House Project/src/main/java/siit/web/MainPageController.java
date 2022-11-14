@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import siit.exceptions.ValidationException;
-import siit.model.Adress;
+import siit.exception.ValidationException;
 import siit.model.CryptoByte;
 import siit.model.User;
 import siit.service.*;
@@ -25,11 +24,11 @@ public class MainPageController {
     @Autowired
     public ProductService productService;
 
-    @Autowired
-    public BidService bidService;
+//    @Autowired
+//    public BidService bidService;
 
     @Autowired
-    public AdressService adressService;
+    public AddressService addressService;
 
     @Autowired
     public CryptoByte cryptoByte;
@@ -73,37 +72,37 @@ public class MainPageController {
         return new ModelAndView("redirect:/mainpage/" + id);
     }
 
-    @GetMapping("/{id}/settings/edit-adress")
-    public ModelAndView doViewEditUserAdress(@PathVariable int id) {
-        ModelAndView mav = new ModelAndView("edit-adress");
-        mav.addObject("user", userService.getUserWithAdress(id));
-        mav.addObject("adress", adressService.getAdressForUserId(id));
-        return mav;
-    }
+//    @GetMapping("/{id}/settings/edit-adress")
+//    public ModelAndView doViewEditUserAdress(@PathVariable int id) {
+//        ModelAndView mav = new ModelAndView("edit-adress");
+//        mav.addObject("user", userService.getUserWithAdress(id));
+//        mav.addObject("adress", addressService.getAdressForUserId(id));
+//        return mav;
+//    }
+//
+//    @PostMapping("/{id}/settings/edit-adress")
+//    public ModelAndView doEditUserAdress(@PathVariable int id, @ModelAttribute Address address) {
+//
+//        Address address1 = userService.getUserWithAdress(id).getAdress();
+//        try {
+//            addressService.updateAdress(id, address);
+//
+//        } catch (ValidationException e) {
+//            ModelAndView mav = new ModelAndView("edit-adress");
+//            mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
+//            return mav;
+//        }
+//
+//        return new ModelAndView("redirect:/mainpage/" + id);
+//    }
 
-    @PostMapping("/{id}/settings/edit-adress")
-    public ModelAndView doEditUserAdress(@PathVariable int id, @ModelAttribute Adress adress) {
 
-        Adress adress1 = userService.getUserWithAdress(id).getAdress();
-        try {
-            adressService.updateAdress(id, adress);
-
-        } catch (ValidationException e) {
-            ModelAndView mav = new ModelAndView("edit-adress");
-            mav.addObject("error", applicationContext.getMessage(e.getCode(), new Object[]{}, Locale.forLanguageTag("ro")));
-            return mav;
-        }
-
-        return new ModelAndView("redirect:/mainpage/" + id);
-    }
-
-
-    @GetMapping("/{id}/contact")
-    public ModelAndView viewContacts(@PathVariable int id) {
-        ModelAndView modelAndView = new ModelAndView("mainpage-contact");
-        modelAndView.addObject("user", bidService.getUsersWithBidsById(id));
-        return modelAndView;
-    }
+//    @GetMapping("/{id}/contact")
+//    public ModelAndView viewContacts(@PathVariable int id) {
+//        ModelAndView modelAndView = new ModelAndView("mainpage-contact");
+//        modelAndView.addObject("user", bidService.getUsersWithBidsById(id));
+//        return modelAndView;
+//    }
 
 }
 

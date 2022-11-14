@@ -2,14 +2,11 @@ package siit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import siit.db.AuctionDao;
-import siit.db.DescriptionDao;
-import siit.db.ProductDao;
+import siit.db.repository.dao.impl.AuctionDAO;
+import siit.db.repository.dao.impl.DescriptionDao;
+import siit.db.repository.dao.impl.ProductDao;
 import siit.model.Product;
-import siit.model.ProductDescription;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -19,7 +16,7 @@ public class ProductService {
     private ProductDao productDao;
 
     @Autowired
-    private AuctionDao auctionDao;
+    private AuctionDAO auctionDao;
 
     @Autowired
     private DescriptionDao descriptionDao;
@@ -50,26 +47,26 @@ public class ProductService {
         return productDao.getProductsByTehnique(tehniq);
     }
 
-    public List<Product> getProductsWithTime() {
-        List<Product> products = getProducts();
-        for (Product p : products) {
-            p.setAuction(auctionDao.getAuctionForProduct(p.getId()));
-            calculateTime(p);
-        }
-        return products;
-    }
+//    public List<Product> getProductsWithTime() {
+//        List<Product> products = getProducts();
+//        for (Product p : products) {
+//            p.setAuction(auctionDao.getAuctionForProduct(p.getId()));
+//            calculateTime(p);
+//        }
+//        return products;
+//    }
 
-    public void calculateTime(Product product) {
-        long timeB = ChronoUnit.DAYS.between(LocalDate.now(), product.getAuction().getEnd_date());
-        product.getAuction().setTime(timeB);
-    }
-
-    public Product getProductWithDescriptionById(int prod_id) {
-        Product product = productDao.getProductById(prod_id);
-        ProductDescription description = descriptionDao.getProductTextByProductId(prod_id);
-        product.setDescription(description);
-        return product;
-    }
+//    public void calculateTime(Product product) {
+//        long timeB = ChronoUnit.DAYS.between(LocalDate.now(), product.getAuction().getEnd_date());
+//        product.getAuction().setTime(timeB);
+//    }
+//
+//    public Product getProductWithDescriptionById(int prod_id) {
+//        Product product = productDao.getProductById(prod_id);
+//        ProductDescription description = descriptionDao.getProductTextByProductId(prod_id);
+//        product.setDescription(description);
+//        return product;
+//    }
 
 
 }

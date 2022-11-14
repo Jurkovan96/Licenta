@@ -1,72 +1,90 @@
 package siit.model;
-import java.util.Date;
 
- public class Bid {
+import siit.db.repository.dao.ModelObject;
 
-    private int bid_id;
-    private Product product;
-    private String state;
-    private Date start_date;
-    private Date end_date;
-    private int bid_value;
+import java.time.LocalDate;
 
-    public int getBid_id() {
-        return bid_id;
+public class Bid extends ModelObject {
+
+    private final LocalDate postDate;
+    private final BidStatus status;
+    private final Integer userId;
+    private final Integer productId;
+    private final Double bidderSum;
+
+    private Bid(Builder builder) {
+        super(builder.id);
+        this.postDate = builder.postDate;
+        this.status = builder.status;
+        this.userId = builder.userId;
+        this.productId = builder.productId;
+        this.bidderSum = builder.bidderSum;
     }
 
-    public void setBid_id(int bid_id) {
-        this.bid_id = bid_id;
+    public LocalDate getPostDate() {
+        return postDate;
     }
 
-    public Product getProduct() {
-        return product;
+    public BidStatus getStatus() {
+        return status;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public String getState() {
-        return state;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public Double getBidderSum() {
+        return bidderSum;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
+    public static class Builder {
+        private java.lang.Integer id;
+        private LocalDate postDate;
+        private BidStatus status;
+        private Integer userId;
+        private Integer productId;
+        private Double bidderSum;
 
-    public Date getEnd_date() {
-        return end_date;
-    }
+        public Builder withPostDate(LocalDate postDate) {
+            this.postDate = postDate;
+            return this;
+        }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
-    }
+        public Builder withStatus(BidStatus status) {
+            this.status = status;
+            return this;
+        }
 
-    public int getBid_value() {
-        return bid_value;
-    }
+        public Builder withUserId(Integer userId) {
+            this.userId = userId;
+            return this;
+        }
 
-    public void setBid_value(int bid_value) {
-        this.bid_value = bid_value;
-    }
+        public Builder withProductId(Integer productId) {
+            this.productId = productId;
+            return this;
+        }
 
-     @Override
-     public String toString() {
-         return "Bid{" +
-                 "bid_id=" + bid_id +
-                 ", product=" + product +
-                 ", state='" + state + '\'' +
-                 ", start_date=" + start_date +
-                 ", end_date=" + end_date +
-                 ", bid_value=" + bid_value +
-                 '}';
-     }
- }
+        public Builder withBidderSum(Double bidderSum) {
+            this.bidderSum = bidderSum;
+            return this;
+        }
+
+        public Builder withId(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public Bid build() {
+            return new Bid(this);
+        }
+    }
+}

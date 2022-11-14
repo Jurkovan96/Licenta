@@ -1,63 +1,79 @@
 package siit.model;
 
+import siit.db.repository.dao.ModelObject;
+
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Set;
 
-public class Auction {
+public class Auction extends ModelObject {
 
-    private int auction_id;
-    private LocalDate start_date;
-    private LocalDate end_date;
-    private int max_val;
-    private long time;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+    private final Integer maximumBet;
+    private final Set<Bid> bids;
 
-    public long getTime() {
-        return time;
+    private Auction(Builder builder) {
+        super(builder.id);
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.maximumBet = builder.maximumBet;
+        this.bids = builder.bids;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public int getAuction_id() {
-        return auction_id;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setAuction_id(int auction_id) {
-        this.auction_id = auction_id;
+    public Integer getMaximumBet() {
+        return maximumBet;
     }
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public Set<Bid> getBids() {
+        return bids;
     }
 
-    public void setStart_date(LocalDate start_date) {
-        this.start_date = start_date;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public LocalDate getEnd_date() {
-        return end_date;
-    }
+    public static class Builder {
+        private Integer id;
+        private LocalDate startDate;
+        private LocalDate endDate;
+        private Integer maximumBet;
+        private Set<Bid> bids;
 
-    public void setEnd_date(LocalDate end_date) {
-        this.end_date = end_date;
-    }
+        public Builder withId(Integer id) {
+            this.id = id;
+            return this;
+        }
 
-    public int getMax_val() {
-        return max_val;
-    }
+        public Builder withStartDate(LocalDate startDate) {
+            this.startDate = startDate;
+            return this;
+        }
 
-    public void setMax_val(int max_val) {
-        this.max_val = max_val;
-    }
+        public Builder withEndDate(LocalDate endDate) {
+            this.endDate = endDate;
+            return this;
+        }
 
-    @Override
-    public String toString() {
-        return "Auction{" +
-                "auction_id=" + auction_id +
-                ", start_date=" + start_date +
-                ", end_date=" + end_date +
-                ", max_val=" + max_val +
-                '}';
+        public Builder withMaximumBet(Integer maximumBet) {
+            this.maximumBet = maximumBet;
+            return this;
+        }
+
+        public Builder withUserList(Set<Bid> bids) {
+            this.bids = bids;
+            return this;
+        }
+
+        public Auction build() {
+            return new Auction(this);
+        }
     }
 }

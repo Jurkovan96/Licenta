@@ -1,11 +1,9 @@
-package siit.db;
+package siit.db.repository.dao.impl;
 
-import org.eclipse.jdt.internal.compiler.apt.dispatch.IProcessorProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import siit.model.Product;
-import siit.model.ProductDescription;
 
 
 import java.sql.ResultSet;

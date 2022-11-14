@@ -2,19 +2,15 @@ package siit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import siit.db.AuctionDao;
-import siit.db.BidDao;
-import siit.db.ProductDao;
-import siit.model.Auction;
-import siit.model.Bid;
-
-import java.util.List;
+import siit.db.repository.dao.impl.AuctionDAO;
+import siit.db.repository.dao.impl.BidDao;
+import siit.db.repository.dao.impl.ProductDao;
 
 @Service
 public class TimeStampService {
 
     @Autowired
-    private AuctionDao auction;
+    private AuctionDAO auction;
 
     @Autowired
     private BidDao bidDao;

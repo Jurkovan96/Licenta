@@ -1,10 +1,7 @@
-package siit.db;
+package siit.db.repository.dao.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import siit.model.Adress;
-import siit.model.CryptoByte;
 import siit.model.User;
 
 import java.sql.ResultSet;
@@ -13,11 +10,11 @@ import java.util.List;
 
 @Repository
 public class UserDao {
+    private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    // private final String password = "password";
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public User getUserById(int id) {
         return jdbcTemplate.queryForObject("select * from users where user_id = ?",

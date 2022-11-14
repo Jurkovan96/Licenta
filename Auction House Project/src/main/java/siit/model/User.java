@@ -10,7 +10,7 @@ public class User {
     private String email;
     private String phone_number;
     private List<Bid> bidsList;
-    private Adress adress;
+    private Address adress;
     private List<Order> orders;
 
     public List<Order> getOrders() {
@@ -29,11 +29,11 @@ public class User {
         this.bidsList = bidsList;
     }
 
-    public Adress getAdress() {
+    public Address getAdress() {
         return adress;
     }
 
-    public void setAdress(Adress adress) {
+    public void setAdress(Address adress) {
         this.adress = adress;
     }
 
